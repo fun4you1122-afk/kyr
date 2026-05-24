@@ -91,17 +91,13 @@ export default function Hero() {
   return (
     <section id="home">
       <ScrollExpandMedia
-        mediaType="video"
-        /* ─── REPLACE with your own video URL ─── */
-        mediaSrc="https://www.youtube.com/watch?v=vx5PZbgPAEE"
-        /* ─── background shown before expansion ─── */
+        mediaSrc="/KYR.mp4"
         bgImageSrc="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=85"
         posterSrc="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1280&q=80"
         title="Unlocking Dubai's Finest Properties"
         tagline="Dubai's Premier Luxury Property Agency"
         scrollToExpand="Scroll to Enter"
         logoSrc="https://i.ibb.co/F4J4BkrX/Untitled-design-3.png"
-        textBlend={false}
       >
         <HeroContent />
       </ScrollExpandMedia>
