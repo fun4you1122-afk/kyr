@@ -65,7 +65,7 @@ const properties = [
     beds: 6,
     baths: 7,
     area: '8,900',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63329198?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=80',
     tag: 'Golf Front',
   },
   {
