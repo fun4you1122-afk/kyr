@@ -10,6 +10,7 @@ import Services          from '@/components/Services';
 import Properties        from '@/components/Properties';
 import Stats             from '@/components/Stats';
 import ScrollStory       from '@/components/ScrollStory';
+import PropertyShowcase  from '@/components/PropertyShowcase';
 import DubaiSection      from '@/components/DubaiSection';
 import Investment        from '@/components/Investment';
 import Testimonials      from '@/components/Testimonials';
@@ -72,7 +73,7 @@ export default function Home() {
           <Services />
           <Properties />
           <Stats />
-          <ScrollStory />
+          <PropertyShowcase />
           <DubaiSection />
           <Investment />
           <Testimonials />
