@@ -11,6 +11,7 @@ import Properties        from '@/components/Properties';
 import Stats             from '@/components/Stats';
 import ScrollStory       from '@/components/ScrollStory';
 import PropertyShowcase  from '@/components/PropertyShowcase';
+import HorizontalGallery from '@/components/HorizontalGallery';
 import DubaiSection      from '@/components/DubaiSection';
 import Investment        from '@/components/Investment';
 import Testimonials      from '@/components/Testimonials';
@@ -72,6 +73,7 @@ export default function Home() {
           <About />
           <Services />
           <Properties />
+          <HorizontalGallery />
           <Stats />
           <PropertyShowcase />
           <DubaiSection />
