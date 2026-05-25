@@ -68,7 +68,7 @@ export default function Hero() {
   const headline = "Unlocking Dubai's";
 
   return (
-    <section id="home" ref={sectionRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <section id="home" ref={sectionRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#080810]">
 
       {/* ── Full-screen video background ── */}
       <video

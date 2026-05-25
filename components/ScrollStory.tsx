@@ -165,17 +165,16 @@ export default function ScrollStory() {
             <motion.div
               key={scene.id}
               className="flex items-center gap-2"
-              style={{
-                opacity: useTransform(
-                  scrollYProgress,
-                  [i * 0.22, i * 0.22 + 0.06, i * 0.22 + 0.18, i * 0.22 + 0.26],
-                  [0.3, 1, 1, 0.3]
-                ),
-              }}
+              style={{ opacity: s[i].opacity }}
             >
               <span className="text-[9px] tracking-[0.2em] text-white/40">{scene.id}</span>
-              <div className="h-px bg-white/20 transition-all duration-500"
-                style={{ width: i === Math.round(scrollYProgress.get() * 3) ? '24px' : '8px' }} />
+              <motion.div
+                className="h-px rounded-full"
+                style={{
+                  width: useTransform(s[i].opacity, [0.3, 1], ['8px', '24px']),
+                  background: 'rgba(196,165,90,0.6)',
+                }}
+              />
             </motion.div>
           ))}
         </div>

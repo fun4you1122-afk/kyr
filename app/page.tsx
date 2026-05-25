@@ -9,13 +9,13 @@ import About             from '@/components/About';
 import Services          from '@/components/Services';
 import Properties        from '@/components/Properties';
 import Stats             from '@/components/Stats';
-import VideoShowcase     from '@/components/VideoShowcase';
 import ScrollStory       from '@/components/ScrollStory';
 import DubaiSection      from '@/components/DubaiSection';
 import Investment        from '@/components/Investment';
 import Testimonials      from '@/components/Testimonials';
 import Contact           from '@/components/Contact';
 import Footer            from '@/components/Footer';
+import FloatingCTA       from '@/components/FloatingCTA';
 
 function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -60,6 +60,7 @@ export default function Home() {
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       <MagneticCursor />
+      <FloatingCTA />
       <SmoothScroll>
         <main
           className="transition-opacity duration-700"
