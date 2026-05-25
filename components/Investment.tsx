@@ -152,8 +152,11 @@ export default function Investment() {
           className="mt-12 flex flex-col md:flex-row items-center justify-center gap-3 text-center"
         >
           <span className="text-white/25 text-xs">Need market intelligence?</span>
-          <button className="text-[#c4a55a] text-xs underline underline-offset-2 hover:no-underline transition-all">
-            Download our free Dubai Market Report 2026
+          <button
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="text-[#c4a55a] text-xs underline underline-offset-2 hover:no-underline transition-all"
+          >
+            Request our free Dubai Market Report 2026
           </button>
         </motion.div>
       </div>

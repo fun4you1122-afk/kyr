@@ -10,6 +10,7 @@ import Services          from '@/components/Services';
 import Properties        from '@/components/Properties';
 import Stats             from '@/components/Stats';
 import VideoShowcase     from '@/components/VideoShowcase';
+import ScrollStory       from '@/components/ScrollStory';
 import DubaiSection      from '@/components/DubaiSection';
 import Investment        from '@/components/Investment';
 import Testimonials      from '@/components/Testimonials';
@@ -70,7 +71,7 @@ export default function Home() {
           <Services />
           <Properties />
           <Stats />
-          <VideoShowcase />
+          <ScrollStory />
           <DubaiSection />
           <Investment />
           <Testimonials />

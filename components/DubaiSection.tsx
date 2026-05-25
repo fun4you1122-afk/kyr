@@ -105,9 +105,10 @@ export default function DubaiSection() {
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.03 }}
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-3 text-xs tracking-[0.15em] uppercase text-[#c4a55a] border border-[#c4a55a]/30 rounded-full hover:bg-[#c4a55a]/10 transition-all duration-300"
             >
-              Download Guide
+              Request Guide
             </motion.button>
           </div>
         </motion.div>

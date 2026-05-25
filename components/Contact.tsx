@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import SocialIcons from '@/components/SocialIcons';
 
 const interests = ['Buy Property', 'Rent Property', 'Sell Property', 'Investment Advice', 'Golden Visa', 'Off-Plan Projects'];
 
@@ -53,7 +54,7 @@ export default function Contact() {
                 { label: 'Phone', value: '+971 58 582 0297', href: 'tel:+971585820297', icon: '📞' },
                 { label: 'Email', value: 'info@kyr.ae', href: 'mailto:info@kyr.ae', icon: '✉️' },
                 { label: 'Sales', value: 'sales@kyr.ae', href: 'mailto:sales@kyr.ae', icon: '🏷️' },
-                { label: 'Location', value: 'Dubai, United Arab Emirates', href: '#', icon: '📍' },
+                { label: 'Location', value: 'Dubai, United Arab Emirates', href: 'https://maps.google.com/?q=Dubai,UAE', icon: '📍' },
               ].map(item => (
                 <motion.a
                   key={item.label}
@@ -74,21 +75,8 @@ export default function Contact() {
             </div>
 
             {/* Social */}
-            <div className="flex gap-3 mt-10">
-              {[
-                { name: 'Instagram', icon: '📷', handle: '@kyr.ae' },
-                { name: 'TikTok',    icon: '🎬', handle: '@kyr.ae' },
-                { name: 'WhatsApp', icon: '💬', handle: '+971 58 582 0297' },
-              ].map(s => (
-                <motion.button
-                  key={s.name}
-                  whileHover={{ scale: 1.05, borderColor: 'rgba(196,165,90,0.4)' }}
-                  className="px-4 py-2 rounded-full border border-white/8 flex items-center gap-2 text-xs text-white/30 hover:text-[#c4a55a] transition-all duration-300"
-                >
-                  <span>{s.icon}</span>
-                  <span>{s.name}</span>
-                </motion.button>
-              ))}
+            <div className="mt-10">
+              <SocialIcons />
             </div>
           </motion.div>
 

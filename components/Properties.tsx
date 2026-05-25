@@ -250,12 +250,13 @@ export default function Properties() {
           transition={{ delay: 0.8 }}
           className="text-center mt-14"
         >
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-10 py-4 text-xs tracking-[0.2em] uppercase border border-[#c4a55a]/30 text-[#c4a55a] rounded-full hover:bg-[#c4a55a]/10 transition-all duration-300"
           >
-            View Full Portfolio
-          </button>
+            Request Full Portfolio
+          </motion.button>
         </motion.div>
       </div>
     </section>

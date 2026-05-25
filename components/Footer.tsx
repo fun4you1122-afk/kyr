@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import SocialIcons from '@/components/SocialIcons';
 
 const quickLinks = [
   { label: 'Home',       id: 'home' },
@@ -118,23 +119,8 @@ export default function Footer() {
         </div>
 
         {/* Social icons */}
-        <div className="flex justify-center gap-4 mb-12">
-          {[
-            { name: 'Instagram', icon: '📷' },
-            { name: 'TikTok',    icon: '🎬' },
-            { name: 'WhatsApp', icon: '💬' },
-            { name: 'LinkedIn', icon: '💼' },
-          ].map(s => (
-            <motion.button
-              key={s.name}
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-full border border-white/8 flex items-center justify-center text-sm hover:border-[rgba(196,165,90,0.3)] transition-colors duration-300"
-              title={s.name}
-            >
-              {s.icon}
-            </motion.button>
-          ))}
+        <div className="flex justify-center mb-12">
+          <SocialIcons />
         </div>
 
         {/* Bottom bar */}
@@ -144,9 +130,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6">
             {['Privacy Policy', 'Terms of Service', 'RERA Licensed'].map(item => (
-              <button key={item} className="text-xs text-white/20 hover:text-white/40 transition-colors">
-                {item}
-              </button>
+              <span key={item} className="text-xs text-white/20">{item}</span>
             ))}
           </div>
           <div className="flex items-center gap-2">

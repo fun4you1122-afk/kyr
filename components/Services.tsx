@@ -97,10 +97,13 @@ function ServiceCard({ s, index, isInView }: { s: typeof services[0]; index: num
       </div>
 
       {/* CTA */}
-      <div className="relative flex items-center gap-2 text-xs text-[#c4a55a] opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-auto">
+      <button
+        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+        className="relative flex items-center gap-2 text-xs text-[#c4a55a] opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-auto"
+      >
         <span className="tracking-[0.15em] uppercase">Learn More</span>
         <motion.span animate={hovered ? { x: 4 } : { x: 0 }} className="text-base">→</motion.span>
-      </div>
+      </button>
 
       {/* Glow border */}
       <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
