@@ -1,88 +1,64 @@
 'use client';
-import { useState, useEffect } from 'react';
 
-import LoadingScreen     from '@/components/LoadingScreen';
-import MagneticCursor    from '@/components/MagneticCursor';
-import Navbar            from '@/components/Navbar';
-import Hero              from '@/components/Hero';
-import About             from '@/components/About';
-import Services          from '@/components/Services';
-import Properties        from '@/components/Properties';
-import Stats             from '@/components/Stats';
-import ScrollStory       from '@/components/ScrollStory';
-import PropertyShowcase  from '@/components/PropertyShowcase';
-import HorizontalGallery from '@/components/HorizontalGallery';
-import DubaiSection      from '@/components/DubaiSection';
-import Investment        from '@/components/Investment';
-import Testimonials      from '@/components/Testimonials';
-import Contact           from '@/components/Contact';
-import Footer            from '@/components/Footer';
-import FloatingCTA       from '@/components/FloatingCTA';
+import dynamic from 'next/dynamic';
+import { WebGLBackground }  from '@/components/WebGLBackground';
+import { Loader }            from '@/components/Loader';
+import { CustomCursor }      from '@/components/CustomCursor';
+import { Navbar }            from '@/components/Navbar';
+import { Hero }              from '@/components/Hero';
+import { MarqueeBand }       from '@/components/MarqueeBand';
+import { AboutSection }      from '@/components/AboutSection';
+import { ServicesSection }   from '@/components/ServicesSection';
+import { GallerySection }    from '@/components/GallerySection';
+import { AdvantageSection }  from '@/components/AdvantageSection';
+import { FoundersSection }   from '@/components/FoundersSection';
+import { InvestSection }     from '@/components/InvestSection';
+import { QuoteSection }      from '@/components/QuoteSection';
+import { ContactSection }    from '@/components/ContactSection';
+import { FooterSection }     from '@/components/FooterSection';
 
-function SmoothScroll({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
-    let rafId: number;
-    const init = async () => {
-      try {
-        const Lenis = (await import('lenis')).default;
-        lenis = new Lenis({
-          duration: 1.4,
-          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          wheelMultiplier: 0.85,
-        }) as unknown as { raf: (t: number) => void; destroy: () => void };
-
-        // Connect Lenis to GSAP ScrollTrigger
-        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-        const { default: gsap } = await import('gsap');
-        gsap.registerPlugin(ScrollTrigger);
-        (lenis as any).on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time: number) => lenis!.raf(time * 1000));
-        gsap.ticker.lagSmoothing(0);
-      } catch {
-        // fallback to native scroll
-        const raf = (t: number) => { lenis?.raf(t); rafId = requestAnimationFrame(raf); };
-        rafId = requestAnimationFrame(raf);
-      }
-    };
-    init();
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis?.destroy();
-    };
-  }, []);
-  return <>{children}</>;
-}
+const GSAPAnimations = dynamic(() => import('@/components/GSAPAnimations'), { ssr: false });
 
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-
   return (
     <>
-      {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
-      <MagneticCursor />
-      <FloatingCTA />
-      <SmoothScroll>
-        <main
-          className="transition-opacity duration-700"
-          style={{ opacity: loaded ? 1 : 0 }}
-        >
-          <Navbar />
-          <Hero />
-          <About />
-          <Services />
-          <Properties />
-          <HorizontalGallery />
-          <Stats />
-          <PropertyShowcase />
-          <DubaiSection />
-          <Investment />
-          <Testimonials />
-          <Contact />
-          <Footer />
-        </main>
-      </SmoothScroll>
+      {/* ── Fixed background layers ── */}
+      <WebGLBackground />
+      <div className="hero-media" id="heroMedia">
+        <video autoPlay muted loop playsInline preload="auto">
+          <source src="/KYR.mp4" type="video/mp4" />
+          <source src="https://www.kyr.ae/hero-index-20260312.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-media__veil" />
+      </div>
+      <div className="atmos" />
+      <div className="vignette" />
+      <div className="grain" />
+
+      {/* ── UI overlays ── */}
+      <div className="progress"><span id="progressBar" /></div>
+      <CustomCursor />
+      <Loader />
+
+      {/* ── Navigation ── */}
+      <Navbar />
+
+      {/* ── Page content ── */}
+      <span id="top" />
+      <Hero />
+      <MarqueeBand />
+      <AboutSection />
+      <ServicesSection />
+      <GallerySection />
+      <AdvantageSection />
+      <FoundersSection />
+      <InvestSection />
+      <QuoteSection />
+      <ContactSection />
+      <FooterSection />
+
+      {/* ── GSAP + Three.js init (client-only) ── */}
+      <GSAPAnimations />
     </>
   );
 }
