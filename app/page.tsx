@@ -26,7 +26,7 @@ export default function Home() {
       <WebGLBackground />
       <div className="hero-media" id="heroMedia">
         <video autoPlay muted loop playsInline preload="auto">
-          <source src="/KYR.mp4" type="video/mp4" />
+          <source src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/KYR.mp4`} type="video/mp4" />
           <source src="https://www.kyr.ae/hero-index-20260312.mp4" type="video/mp4" />
         </video>
         <div className="hero-media__veil" />
