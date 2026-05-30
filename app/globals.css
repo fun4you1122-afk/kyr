@@ -147,8 +147,11 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
   font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
 .hero__eyebrow{color:var(--gold-2)}
 .hero__title{font-size:clamp(50px,9.2vw,150px);font-weight:300;letter-spacing:-.015em;max-width:14ch;
-  text-shadow:0 6px 44px rgba(0,0,0,.55)}
+  text-shadow:0 6px 44px rgba(0,0,0,.55);perspective:800px}
 .hero__title em{font-style:italic;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.title-line{display:block;overflow:hidden}
+.char{display:inline-block;overflow:hidden;line-height:1.1;vertical-align:bottom}
+.char-i{display:inline-block;will-change:transform}
 .hero__sub{margin-top:32px;font-size:clamp(15px,1.8vw,20px);color:var(--ink-soft);max-width:46ch}
 .hero__actions{margin-top:48px;display:flex;gap:18px;flex-wrap:wrap}
 .hero__scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.36em;
