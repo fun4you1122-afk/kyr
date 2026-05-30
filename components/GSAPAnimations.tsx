@@ -11,11 +11,27 @@ export default function GSAPAnimations() {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
 
+      /* ── 1. Lenis smooth scroll ── */
+      let lenis: any = null;
+      let lenisVelocity = 0;
+
+      if (!reduce) {
+        const LenisClass = (await import('lenis')).default;
+        lenis = new LenisClass({
+          duration: 1.6,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+        lenis.on('scroll', () => ScrollTrigger.update());
+        lenis.on('scroll', ({ velocity: v }: { velocity: number }) => { lenisVelocity = v; });
+      }
+
       /* ── Custom cursor ── */
+      const label = document.getElementById('cursorLabel');
       (function initCursor() {
-        const dot   = document.getElementById('cursor');
-        const ring  = document.getElementById('cursorRing');
-        const label = document.getElementById('cursorLabel');
+        const dot  = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
         if (!dot || !ring || matchMedia('(pointer:coarse)').matches) return;
         let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
         window.addEventListener('pointermove', (e) => {
@@ -32,7 +48,10 @@ export default function GSAPAnimations() {
             document.body.classList.add('cursor-grow');
             if (label) label.textContent = el.getAttribute('data-cursor-label') || '';
           });
-          el.addEventListener('pointerleave', () => document.body.classList.remove('cursor-grow'));
+          el.addEventListener('pointerleave', () => {
+            document.body.classList.remove('cursor-grow');
+            if (label) label.textContent = '';
+          });
         });
       })();
 
@@ -62,7 +81,14 @@ export default function GSAPAnimations() {
         const nav    = document.getElementById('nav');
         const burger = document.getElementById('burger');
         const mm     = document.getElementById('mobileMenu');
-        if (nav) window.addEventListener('scroll', () => nav.classList.toggle('shrink', scrollY > 60), { passive: true });
+
+        function onScroll() {
+          const sy = lenis ? lenis.scroll : scrollY;
+          if (nav) nav.classList.toggle('shrink', sy > 60);
+        }
+        if (lenis) lenis.on('scroll', onScroll);
+        else window.addEventListener('scroll', onScroll, { passive: true });
+
         if (burger && mm) {
           burger.addEventListener('click', () => { mm.classList.toggle('open'); burger.classList.toggle('on'); });
         }
@@ -74,7 +100,8 @@ export default function GSAPAnimations() {
             if (!target) return;
             e.preventDefault();
             mm?.classList.remove('open');
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (lenis) lenis.scrollTo(target as HTMLElement, { offset: 0, duration: 1.6 });
+            else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
         });
       })();
@@ -83,14 +110,46 @@ export default function GSAPAnimations() {
       (function initProgress() {
         const bar = document.getElementById('progressBar');
         function onScroll() {
+          const sy  = lenis ? lenis.scroll : scrollY;
           const max = document.documentElement.scrollHeight - innerHeight;
-          const p   = max > 0 ? scrollY / max : 0;
+          const p   = max > 0 ? sy / max : 0;
           if (bar) bar.style.width = (p * 100) + '%';
           if ((window as any).KYRScene) (window as any).KYRScene.setProgress(p);
         }
-        window.addEventListener('scroll', onScroll, { passive: true });
+        if (lenis) lenis.on('scroll', onScroll);
+        else window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
       })();
+
+      /* ── 2. Char-level headline split ── */
+      function splitToChars(container: HTMLElement): HTMLElement[] {
+        if (container.querySelector('.char-i')) return Array.from(container.querySelectorAll('.char-i'));
+        const lines = container.querySelectorAll<HTMLElement>('.title-line');
+        const allChars: HTMLElement[] = [];
+        lines.forEach((line) => {
+          const childNodes = Array.from(line.childNodes);
+          line.innerHTML = '';
+          childNodes.forEach((node) => {
+            if (node.nodeType === 3) {
+              (node.textContent || '').split('').forEach((ch) => {
+                const wrap = document.createElement('span'); wrap.className = 'char';
+                const inner = document.createElement('span'); inner.className = 'char-i';
+                inner.textContent = ch === ' ' ? ' ' : ch;
+                wrap.appendChild(inner); line.appendChild(wrap); allChars.push(inner);
+              });
+            } else if ((node as Element).tagName === 'EM') {
+              (node.textContent || '').split('').forEach((ch) => {
+                const wrap = document.createElement('span'); wrap.className = 'char';
+                const em   = document.createElement('em');
+                const inner = document.createElement('span'); inner.className = 'char-i';
+                inner.textContent = ch === ' ' ? ' ' : ch;
+                em.appendChild(inner); wrap.appendChild(em); line.appendChild(wrap); allChars.push(inner);
+              });
+            }
+          });
+        });
+        return allChars;
+      }
 
       /* ── Word splitter for .split headlines ── */
       function splitWords(el: HTMLElement) {
@@ -121,9 +180,18 @@ export default function GSAPAnimations() {
 
       /* ── Loader sequence ── */
       function revealHero() {
-        gsap.to('.hero .line-i', { y: 0, duration: 1.25, stagger: 0.14, ease: 'power4.out' });
-        gsap.to('.hero .up',     { y: 0, opacity: 1, duration: 1.1, stagger: 0.12, ease: 'power3.out', delay: 0.25 });
-        gsap.to('.hero__eyebrow',{ y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
+        const heroTitle = document.getElementById('heroTitle');
+        if (heroTitle) {
+          const chars = splitToChars(heroTitle);
+          if (chars.length) {
+            gsap.fromTo(chars,
+              { y: '110%', rotateX: -80, opacity: 0, transformPerspective: 800 },
+              { y: 0, rotateX: 0, opacity: 1, duration: 1.4, stagger: 0.032, ease: 'power4.out', delay: 0.2 }
+            );
+          }
+        }
+        gsap.to('.hero .up',      { y: 0, opacity: 1, duration: 1.1, stagger: 0.12, ease: 'power3.out', delay: 0.55 });
+        gsap.to('.hero__eyebrow', { y: 0, opacity: 1, duration: 1.0, ease: 'power3.out', delay: 0.35 });
       }
 
       (function initLoader() {
@@ -135,15 +203,14 @@ export default function GSAPAnimations() {
         if (reduce) {
           el.style.opacity = '0'; el.style.visibility = 'hidden';
           setTimeout(done, 650);
-          document.querySelectorAll('.hero .line-i,.hero .word-i').forEach((n) => ((n as HTMLElement).style.transform = 'none'));
           document.querySelectorAll('.hero .up,.hero__eyebrow').forEach((n) => {
             (n as HTMLElement).style.opacity = '1';
             (n as HTMLElement).style.transform = 'none';
           });
           return;
         }
-        gsap.set('.hero .up',       { opacity: 0, y: 40 });
-        gsap.set('.hero__eyebrow',  { opacity: 0, y: 30 });
+        gsap.set('.hero .up',      { opacity: 0, y: 40 });
+        gsap.set('.hero__eyebrow', { opacity: 0, y: 30 });
         const counter = { v: 0 };
         const tl = gsap.timeline();
         tl.to(counter, {
@@ -168,7 +235,7 @@ export default function GSAPAnimations() {
         onEnter: (b: Element[]) => gsap.to(b, { y: 0, opacity: 1, duration: 1.05, stagger: 0.1, ease: 'power3.out', overwrite: true }),
       });
 
-      // Hero video fades as you scroll past the video section
+      // Hero video fades as you scroll → reveals 3D city
       gsap.to('#heroMedia', {
         opacity: 0, ease: 'none',
         scrollTrigger: { trigger: '.hero-video-section', start: 'top top', end: 'bottom top', scrub: true },
@@ -217,31 +284,58 @@ export default function GSAPAnimations() {
         });
       });
 
-      // Founder photo clip-reveals
+      /* ── 3. Clip-path image reveals ── */
+      // Founder photos
       gsap.utils.toArray<HTMLElement>('.member__ph').forEach((ph, i) => {
         gsap.fromTo(ph,
           { clipPath: 'inset(100% 0 0 0)' },
-          { clipPath: 'inset(0% 0 0 0)', duration: 1.2, ease: 'power3.out',
-            scrollTrigger: { trigger: ph, start: 'top 86%' }, delay: i * 0.08 },
+          { clipPath: 'inset(0% 0 0 0)', duration: 1.5, ease: 'power3.inOut',
+            scrollTrigger: { trigger: ph, start: 'top 86%' }, delay: i * 0.1 },
         );
       });
       gsap.utils.toArray<HTMLElement>('.member__ph img').forEach((img) => {
         gsap.fromTo(img,
-          { scale: 1.25 },
-          { scale: 1, duration: 1.4, ease: 'power3.out',
+          { scale: 1.18 },
+          { scale: 1, duration: 1.6, ease: 'power3.out',
             scrollTrigger: { trigger: img, start: 'top 86%' } },
         );
       });
 
+      // Visa image clip-path reveal + parallax
+      gsap.utils.toArray<HTMLElement>('.visa__pic').forEach((pic) => {
+        gsap.fromTo(pic,
+          { clipPath: 'inset(100% 0 0 0)' },
+          { clipPath: 'inset(0% 0 0 0)', duration: 1.5, ease: 'power3.inOut',
+            scrollTrigger: { trigger: pic, start: 'top 85%' } },
+        );
+      });
+      gsap.utils.toArray<HTMLElement>('.visa__pic img').forEach((img) => {
+        const sec = img.closest('section');
+        gsap.fromTo(img,
+          { yPercent: -8, scale: 1.18 },
+          { yPercent: 8, scale: 1.0, ease: 'none',
+            scrollTrigger: { trigger: sec || img, start: 'top bottom', end: 'bottom top', scrub: true } },
+        );
+      });
+
+      /* ── 4. Scroll velocity tilt (Lenis) ── */
+      if (lenis) {
+        gsap.ticker.add(() => {
+          document.querySelectorAll<HTMLElement>('.tilt-on-scroll').forEach((el) => {
+            gsap.to(el, { skewY: lenisVelocity * 0.012, duration: 0.6, ease: 'power3.out', overwrite: 'auto' });
+          });
+        });
+      }
+
       // Pinned horizontal portfolio
-      const track   = document.getElementById('galleryTrack');
-      const section = document.getElementById('standard');
-      if (track && section) {
+      const track          = document.getElementById('galleryTrack');
+      const gallerySection = document.getElementById('standard');
+      if (track && gallerySection) {
         const distance = () => track.scrollWidth - innerWidth;
         gsap.to(track, {
           x: () => -distance(), ease: 'none',
           scrollTrigger: {
-            trigger: section, start: 'top top',
+            trigger: gallerySection, start: 'top top',
             end: () => '+=' + distance(),
             pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
           },
@@ -250,20 +344,10 @@ export default function GSAPAnimations() {
           gsap.fromTo(img,
             { xPercent: -6 },
             { xPercent: 6, ease: 'none',
-              scrollTrigger: { trigger: section, start: 'top top', end: () => '+=' + distance(), scrub: true } },
+              scrollTrigger: { trigger: gallerySection, start: 'top top', end: () => '+=' + distance(), scrub: true } },
           );
         });
       }
-
-      // Visa parallax
-      gsap.utils.toArray<HTMLElement>('.visa__pic img').forEach((img) => {
-        const sec = img.closest('section');
-        gsap.fromTo(img,
-          { yPercent: -8 },
-          { yPercent: 8, ease: 'none',
-            scrollTrigger: { trigger: sec || img, start: 'top bottom', end: 'bottom top', scrub: true } },
-        );
-      });
 
       requestAnimationFrame(() => ScrollTrigger.refresh());
       window.addEventListener('load', () => ScrollTrigger.refresh());

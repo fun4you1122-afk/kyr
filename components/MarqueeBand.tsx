@@ -8,7 +8,7 @@ export function MarqueeBand() {
   );
   return (
     <div className="marquee" aria-hidden="true">
-      <div className="marquee__track">
+      <div className="marquee__track tilt-on-scroll">
         {text}{text}
       </div>
     </div>

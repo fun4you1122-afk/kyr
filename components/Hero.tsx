@@ -1,16 +1,15 @@
 'use client';
+
 export function Hero() {
   return (
     <>
       {/* ── Section 1: Full-screen cinematic video ── */}
       <section className="hero-video-section" id="home">
-        {/* Logo centred over the video */}
         <div className="hero-video-logo">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://www.kyr.ae/KYR%20LOGO%20WHITE.svg" alt="KYR Real Estate" />
-          <p>Dubai · Luxury Real Estate</p>
+          <img src="https://www.kyr.ae/KYR%20LOGO%20WHITE.svg" alt="KYR Real Estate" id="heroLogo" />
+          <p className="hero-video-tag">Dubai · Luxury Real Estate</p>
         </div>
-        {/* Scroll cue */}
         <div className="hero__scroll"><span className="ln" />Scroll to explore</div>
       </section>
 
@@ -19,9 +18,10 @@ export function Hero() {
         <span className="hero__side">Est. — Dubai, UAE</span>
         <div className="hero__inner wrap">
           <span className="eyebrow hero__eyebrow">KYR Real Estate</span>
-          <h1 className="hero__title">
-            <span className="line"><span className="line-i">Unlocking Dubai&apos;s</span></span>
-            <span className="line"><span className="line-i"><em>Finest</em> Properties</span></span>
+          {/* data-chars triggers char-level GSAP split in GSAPAnimations */}
+          <h1 className="hero__title" id="heroTitle">
+            <span className="title-line">Unlocking Dubai&apos;s</span>
+            <span className="title-line"><em>Finest</em> Properties</span>
           </h1>
           <p className="hero__sub up">
             Redefining real estate through transparency, expertise, and precision — your trusted

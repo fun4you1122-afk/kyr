@@ -4,7 +4,7 @@ const GCS = 'https://storage.googleapis.com/kyrwebsite-frontend-620364934597/KYR
 export function GallerySection() {
   return (
     <section className="gallery" id="standard">
-      <div className="gallery__track" id="galleryTrack" data-cursor="true" data-cursor-label="Drag">
+      <div className="gallery__track" id="galleryTrack" data-cursor="true">
         <article className="gpanel gpanel--intro">
           <span className="eyebrow">The KYR Standard</span>
           <h2>A portfolio<br />defined by <em>elegance</em>.</h2>
@@ -15,7 +15,7 @@ export function GallerySection() {
           <span className="gpanel__hint">Scroll →</span>
         </article>
 
-        <article className="gpanel gpanel--img">
+        <article className="gpanel gpanel--img" data-cursor="true" data-cursor-label="Signature">
           <div className="gpanel__media">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -29,7 +29,7 @@ export function GallerySection() {
           </div>
         </article>
 
-        <article className="gpanel gpanel--img">
+        <article className="gpanel gpanel--img" data-cursor="true" data-cursor-label="Enduring Value">
           <div className="gpanel__media">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -43,7 +43,7 @@ export function GallerySection() {
           </div>
         </article>
 
-        <article className="gpanel gpanel--img">
+        <article className="gpanel gpanel--img" data-cursor="true" data-cursor-label="Partnership">
           <div className="gpanel__media">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
