@@ -1,6 +1,10 @@
 [build]
   command   = "npm ci && npx next build"
   publish   = "out"
+  base      = ""
+
+[context.production]
+  branch = "main"
 
 [build.environment]
   NODE_VERSION = "20"

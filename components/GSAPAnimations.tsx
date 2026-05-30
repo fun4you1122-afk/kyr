@@ -168,10 +168,10 @@ export default function GSAPAnimations() {
         onEnter: (b: Element[]) => gsap.to(b, { y: 0, opacity: 1, duration: 1.05, stagger: 0.1, ease: 'power3.out', overwrite: true }),
       });
 
-      // Hero video fade → reveals 3D city
+      // Hero video fades as you scroll past the video section
       gsap.to('#heroMedia', {
         opacity: 0, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+        scrollTrigger: { trigger: '.hero-video-section', start: 'top top', end: 'bottom top', scrub: true },
       });
 
       // Masked headline reveals (.split)
