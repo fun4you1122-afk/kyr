@@ -3,192 +3,203 @@ import { useEffect } from 'react';
 
 export default function CatalogueAnimations() {
   useEffect(() => {
-    let animEnabled = false;
-    let scrollCb: (() => void) | null = null;
-    let resizeCb: (() => void) | null = null;
-    let timer: ReturnType<typeof setTimeout> | null = null;
+    let animationEnabled = false;
+    let scrollHandler: (() => void) | null = null;
+    let resizeHandler: (() => void) | null = null;
+    let timeout: ReturnType<typeof setTimeout> | null = null;
 
-    function init() {
-      const wrap = document.getElementById('pcatScroll');
-      if (!wrap) return;
-
-      const sections = Array.from(wrap.querySelectorAll<HTMLElement>('.pcat__section'));
+    function initAnimationScript() {
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('.image-section'));
       const total = sections.length;
       if (!total) return;
 
+      const container = document.getElementById('pcatScrollContainer');
+      if (!container) return;
+
       let winH = window.innerHeight;
       let cachedTop = 0;
+      let lastY = window.scrollY;
       let ticking = false;
+      let active = false;
 
       function cacheTop() {
-        cachedTop = wrap!.getBoundingClientRect().top + window.scrollY;
+        cachedTop = container!.getBoundingClientRect().top + window.scrollY;
       }
 
-      function setHeight() {
-        wrap!.style.height = `${winH * total * 2}px`;
-      }
+      const totalH = winH * total * 2;
+      container.style.height = `${totalH}px`;
+      cacheTop();
 
       function ease(t: number) {
         return 1 - Math.pow(1 - t, 3);
       }
 
-      function resetSections() {
+      function reset() {
         sections.forEach((s, i) => {
-          const ov = s.querySelector<HTMLElement>('.pcat__overlay');
+          const ov = s.querySelector<HTMLElement>('.overlay');
           if (ov) ov.style.transform = 'translate3d(0,0,0) rotateY(0deg)';
-          Object.assign(s.style, {
-            position: 'absolute',
-            top: `${i * winH * 2}px`,
-            left: '0',
-            width: '100%',
-            height: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            opacity: '0',
-            transform: 'translate3d(0,0,0)',
-            zIndex: '1',
-          });
+          s.style.position = 'absolute';
+          s.style.top = `${i * winH * 2}px`;
+          s.style.left = '0';
+          s.style.transform = 'translate3d(0,0,0)';
+          s.style.opacity = '0.3';
+          s.style.zIndex = '1';
+          s.style.width = '100%';
+          s.style.height = '100vh';
+          s.style.display = 'flex';
+          s.style.alignItems = 'center';
+          s.style.justifyContent = 'center';
         });
       }
 
       function update(scrollY: number) {
+        const should = scrollY >= cachedTop;
+        if (!should && active) {
+          reset();
+          active = false;
+          return;
+        }
+        if (!should) return;
+        if (!active) active = true;
+
         const adj = scrollY - cachedTop;
-
         sections.forEach((s, idx) => {
-          const ov = s.querySelector<HTMLElement>('.pcat__overlay');
-          if (!ov) return;
-
-          const isLeft = ov.classList.contains('pcat__overlay--left');
-          const maxRot = isLeft ? -180 : 180;
-          const trans  = isLeft ? -12 : 12;
-
-          const start = idx * winH * 2;
-          const end   = start + winH * 2;
-
-          s.style.width   = '100%';
-          s.style.height  = '100vh';
-          s.style.display = 'flex';
-          s.style.alignItems = 'center';
-          s.style.justifyContent = 'center';
+          const ov = s.querySelector<HTMLElement>('.overlay');
+          const start = idx * winH * 2,
+            end = start + winH * 2;
+          const isLeft = ov?.classList.contains('overlay-left');
+          const maxRot = isLeft ? -180 : 180,
+            trans = isLeft ? -10 : 10;
 
           if (adj >= start && adj < end) {
-            /* ── Active: sticky, book opens then slides away ── */
             const prog = (adj - start) / (winH * 2);
-            s.style.position = 'sticky';
-            s.style.top      = '0';
-            s.style.left     = '0';
-            s.style.zIndex   = String(total - idx + 10);
-
             if (prog <= 0.5) {
-              const open = Math.min(1, prog * 2);
-              ov.style.transform = `translate3d(${trans * open}px,0,0) rotateY(${maxRot * open}deg)`;
-              s.style.transform  = 'translate3d(0,0,0)';
-              s.style.opacity    = '1';
+              const open = Math.min(1, prog * 2),
+                rot = maxRot * open,
+                tx = trans * open;
+              if (ov) ov.style.transform = `translate3d(${tx}px,0,0) rotateY(${rot}deg)`;
+              s.style.position = 'sticky';
+              s.style.top = '0';
+              s.style.transform = 'translate3d(0,0,0)';
+              s.style.opacity = '1';
+              s.style.zIndex = String(total - idx);
             } else {
-              const p     = Math.min(1, (prog - 0.5) * 2);
-              const eased = ease(p);
-              ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot}deg)`;
-              s.style.transform  = `translate3d(0,${-eased * winH}px,0)`;
-              s.style.opacity    = String(Math.max(0, 1 - eased));
+              const scrollP = Math.min(1, (prog - 0.5) * 2);
+              if (ov) ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot}deg)`;
+              const eased = ease(scrollP),
+                ty = -eased * winH,
+                op = 1 - eased * 0.8;
+              s.style.position = 'sticky';
+              s.style.top = '0';
+              s.style.transform = `translate3d(0,${ty}px,0)`;
+              s.style.opacity = op.toString();
+              s.style.zIndex = String(total - idx);
             }
           } else if (adj < start) {
-            /* ── Not yet reached ── */
-            ov.style.transform = 'translate3d(0,0,0) rotateY(0deg)';
-
-            // When the previous section enters its exit phase, reveal this section
-            // underneath it (sticky at top:0, lower z-index) so there is no gap.
-            const prevExitThreshold = start - winH; // = (idx-1)*winH*2 + winH
-            if (idx > 0 && adj >= prevExitThreshold) {
-              s.style.position  = 'sticky';
-              s.style.top       = '0';
-              s.style.left      = '0';
-              s.style.zIndex    = String(total - idx + 9); // one below active (total-idx+10)
-              s.style.transform = 'translate3d(0,0,0)';
-              s.style.opacity   = '1';
-            } else {
-              s.style.position  = 'absolute';
-              s.style.top       = `${start}px`;
-              s.style.left      = '0';
-              s.style.zIndex    = '1';
-              s.style.transform = 'translate3d(0,0,0)';
-              s.style.opacity   = '0';
-            }
-          } else {
-            /* ── Already passed ── */
-            ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot}deg)`;
-            s.style.position  = 'absolute';
-            s.style.top       = `${start}px`;
-            s.style.left      = '0';
-            s.style.zIndex    = '1';
-            s.style.transform = `translate3d(0,${-winH * 1.1}px,0)`;
-            s.style.opacity   = '0';
+            if (ov) ov.style.transform = 'translate3d(0,0,0) rotateY(0deg)';
+            s.style.position = 'absolute';
+            s.style.top = `${start}px`;
+            const dist = start - adj,
+              p = Math.min(100, (dist / (winH * 2)) * 200);
+            s.style.transform = `translate3d(0,${p}px,0)`;
+            s.style.opacity = Math.max(0.3, 1 - (dist / (winH * 2)) * 1.4).toString();
+            s.style.zIndex = '1';
+          } else if (adj >= end) {
+            const past = (adj - end) / (winH * 2);
+            if (ov)
+              ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot * 0.78}deg)`;
+            s.style.position = 'absolute';
+            s.style.top = `${start}px`;
+            s.style.transform = `translate3d(0,${-winH - past * winH * 0.5}px,0)`;
+            s.style.opacity = Math.max(0, 0.3 - past * 0.5).toString();
+            s.style.zIndex = '1';
           }
         });
       }
 
       function onScroll() {
-        const y = window.scrollY;
+        lastY = window.scrollY;
         if (!ticking) {
-          requestAnimationFrame(() => { update(y); ticking = false; });
+          requestAnimationFrame(() => {
+            update(lastY);
+            ticking = false;
+          });
           ticking = true;
         }
       }
 
-      cacheTop();
-      setHeight();
-      resetSections();
-      update(window.scrollY);
-
-      scrollCb = onScroll;
-      window.addEventListener('scroll', scrollCb, { passive: true });
-
-      resizeCb = () => {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => {
-          winH = window.innerHeight;
-          cacheTop();
-          setHeight();
-          resetSections();
+      function initPos() {
+        winH = window.innerHeight;
+        cacheTop();
+        container!.style.height = `${winH * total * 2}px`;
+        const shouldActive = window.scrollY >= cachedTop;
+        active = shouldActive;
+        if (!shouldActive) {
+          reset();
+        } else {
+          sections.forEach((s, i) => {
+            s.style.position = 'absolute';
+            s.style.top = `${i * winH * 2}px`;
+            s.style.left = '0';
+            s.style.transform = 'translate3d(0,0,0)';
+            s.style.width = '100%';
+            s.style.height = '100vh';
+            s.style.display = 'flex';
+            s.style.alignItems = 'center';
+            s.style.justifyContent = 'center';
+          });
           update(window.scrollY);
-        }, 150);
-      };
-      window.addEventListener('resize', resizeCb);
-      animEnabled = true;
-    }
-
-    function destroy() {
-      if (!animEnabled) return;
-      if (scrollCb)  window.removeEventListener('scroll', scrollCb);
-      if (resizeCb)  window.removeEventListener('resize', resizeCb);
-      if (timer)     clearTimeout(timer);
-      const wrap = document.getElementById('pcatScroll');
-      if (wrap) {
-        wrap.style.height = '';
-        wrap.querySelectorAll<HTMLElement>('.pcat__section').forEach((s) => {
-          s.style.cssText = '';
-          const ov = s.querySelector<HTMLElement>('.pcat__overlay');
-          if (ov) ov.style.transform = '';
-        });
+        }
       }
-      animEnabled = false;
+
+      scrollHandler = onScroll;
+      initPos();
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+
+      function handleResize() {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(initPos, 150);
+      }
+      resizeHandler = handleResize;
+      window.addEventListener('resize', resizeHandler);
+      animationEnabled = true;
     }
 
-    function check() {
-      if (window.innerWidth >= 800 && !animEnabled) init();
-      else if (window.innerWidth < 800 && animEnabled) destroy();
+    function disableAnim() {
+      if (!animationEnabled) return;
+      if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+      if (resizeHandler) window.removeEventListener('resize', resizeHandler);
+      if (timeout) clearTimeout(timeout);
+      document.querySelectorAll<HTMLElement>('.image-section').forEach((s) => {
+        s.style.position = '';
+        s.style.top = '';
+        s.style.left = '';
+        s.style.transform = '';
+        s.style.opacity = '';
+        s.style.zIndex = '';
+        const ov = s.querySelector<HTMLElement>('.overlay');
+        if (ov) ov.style.transform = '';
+      });
+      const container = document.getElementById('pcatScrollContainer');
+      if (container) container.style.height = '';
+      animationEnabled = false;
     }
 
-    check();
+    function checkToggle() {
+      if (window.innerWidth >= 800 && !animationEnabled) initAnimationScript();
+      else if (window.innerWidth < 800 && animationEnabled) disableAnim();
+    }
+
+    checkToggle();
 
     const rCb = () => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(check, 150);
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(checkToggle, 150);
     };
     window.addEventListener('resize', rCb);
 
     return () => {
-      destroy();
+      disableAnim();
       window.removeEventListener('resize', rCb);
     };
   }, []);

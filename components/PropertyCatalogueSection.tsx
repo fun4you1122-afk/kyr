@@ -42,7 +42,7 @@ const PROPERTIES: Property[] = [
     roi: '7.4% rental yield',
     description:
       'Positioned against the backdrop of Creek Island, these residences offer floor-to-ceiling glazing with direct water views, a curated wellness podium, and instant Downtown connectivity.',
-    image: `${GCS}/luxury%20is%20the%20investment%20that%20never%20fades.jpg`,
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=90&fit=crop',
     side: 'right',
   },
   {
@@ -83,7 +83,7 @@ const PROPERTIES: Property[] = [
     price: 'AED 7,400,000',
     roi: '6.5% projected ROI',
     description:
-      'Steps from a private beach on Dubai Harbour\'s prestigious peninsula, these waterfront residences command unobstructed views of the Arabian Gulf and Palm Jumeirah.',
+      "Steps from a private beach on Dubai Harbour's prestigious peninsula, these waterfront residences command unobstructed views of the Arabian Gulf and Palm Jumeirah.",
     image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=90&fit=crop',
     side: 'left',
   },
@@ -97,7 +97,7 @@ const PROPERTIES: Property[] = [
     price: 'AED 1,950,000',
     roi: '8.4% rental yield',
     description:
-      'At the heart of Downtown Dubai\'s cultural district, DG1 apartments blend architectural precision with panoramic Burj Khalifa views — the city\'s most coveted residential address.',
+      "At the heart of Downtown Dubai's cultural district, DG1 apartments blend architectural precision with panoramic Burj Khalifa views — the city's most coveted residential address.",
     image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=90&fit=crop',
     side: 'right',
   },
@@ -118,55 +118,46 @@ export function PropertyCatalogueSection() {
         </p>
       </div>
 
-      {/* ── Desktop: scroll-driven book-flip catalogue ── */}
-      <div className="pcat__scroll" id="pcatScroll">
+      {/* ── Desktop: CodePen scroll-driven book-flip ── */}
+      <div className="scroll-container" id="pcatScrollContainer">
         {PROPERTIES.map((prop) => (
-          <div
-            className="pcat__section"
-            data-index={prop.id}
-            data-side={prop.side}
-            key={prop.id}
-          >
-            <div className="pcat__container">
-              <div className="pcat__box">
-                {/* Background property image */}
+          <div className="image-section" data-index={prop.id} key={prop.id}>
+            <div className="image-container">
+              <div className="image-box">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={prop.image} alt={prop.name} className="pcat__img" />
+                <img src={prop.image} alt={prop.name} className="image-visible" />
+                <div className={`overlay overlay-${prop.side}`}>
 
-                {/* 3D flip overlay */}
-                <div className={`pcat__overlay pcat__overlay--${prop.side}`}>
-
-                  {/* Front face — shown before scroll opens it */}
-                  <div className="pcat__front">
-                    <div className="pcat__front-inner">
-                      <span className="pcat__loc">{prop.location}</span>
-                      <h2 className="pcat__name">{prop.name}</h2>
-                      <div className="pcat__gem">✦</div>
-                      <span className="pcat__tag">{prop.status}</span>
+                  {/* Front face */}
+                  <div className="overlay-front">
+                    <div className="overlay-content">
+                      <span className="prop-location">{prop.location}</span>
+                      <h2>{prop.name}</h2>
+                      <div className="prop-gem">✦</div>
+                      <span className="prop-status">{prop.status}</span>
                     </div>
                   </div>
 
-                  {/* Back face — two-page spread revealed after flip */}
-                  <div className="pcat__back">
-                    <div className="pcat__pg-left">
-                      <span className="pcat__loc-back">{prop.location}</span>
-                      <h3 className="pcat__back-name">{prop.name}</h3>
-                      <p className="pcat__desc">{prop.description}</p>
-                      <ul className="pcat__specs">
+                  {/* Back face — two-page spread */}
+                  <div className="overlay-back">
+                    <div className="left-page">
+                      <h3>{prop.name}</h3>
+                      <p className="description">{prop.description}</p>
+                      <ul className="prop-specs">
                         <li><span>Type</span>{prop.type}</li>
                         <li><span>Area</span>{prop.area}</li>
                         <li><span>Status</span>{prop.status}</li>
                         <li><span>Yield</span>{prop.roi}</li>
                       </ul>
                     </div>
-                    <div className="pcat__pg-right">
+                    <div className="right-page">
                       <figure>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={prop.image} alt={prop.name} />
                       </figure>
-                      <p className="pcat__price">{prop.price}</p>
-                      <a className="pcat__cta" href="#contact">
-                        Book Viewing <i className="arr">→</i>
+                      <p className="price">{prop.price}</p>
+                      <a className="view-btn" href="#contact">
+                        Book Viewing <i>→</i>
                       </a>
                     </div>
                   </div>
@@ -179,27 +170,30 @@ export function PropertyCatalogueSection() {
       </div>
 
       {/* ── Mobile: stacked cards ── */}
-      <div className="pcat__mobile">
+      <div className="mobile-products">
         {PROPERTIES.map((prop) => (
-          <div className="pcat__mcard" key={prop.id}>
-            <div className="pcat__mcard-img">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={prop.image} alt={prop.name} />
-            </div>
-            <div className="pcat__mcard-body">
-              <span className="pcat__loc">{prop.location}</span>
-              <h3 className="pcat__back-name">{prop.name}</h3>
-              <p className="pcat__desc">{prop.description}</p>
-              <ul className="pcat__specs">
-                <li><span>Type</span>{prop.type}</li>
-                <li><span>Area</span>{prop.area}</li>
-                <li><span>Status</span>{prop.status}</li>
-                <li><span>Yield</span>{prop.roi}</li>
-              </ul>
-              <p className="pcat__price">{prop.price}</p>
-              <a className="pcat__cta pcat__cta--wide" href="#contact">
-                Book Viewing <i className="arr">→</i>
-              </a>
+          <div className="mobile-product-card" key={prop.id}>
+            <div className="overlay-back">
+              <div className="left-page">
+                <h3>{prop.name}</h3>
+                <p className="description">{prop.description}</p>
+                <ul className="prop-specs">
+                  <li><span>Type</span>{prop.type}</li>
+                  <li><span>Area</span>{prop.area}</li>
+                  <li><span>Status</span>{prop.status}</li>
+                  <li><span>Yield</span>{prop.roi}</li>
+                </ul>
+              </div>
+              <div className="right-page">
+                <figure>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={prop.image} alt={prop.name} />
+                </figure>
+                <p className="price">{prop.price}</p>
+                <a className="view-btn view-btn--wide" href="#contact">
+                  Book Viewing <i>→</i>
+                </a>
+              </div>
             </div>
           </div>
         ))}
