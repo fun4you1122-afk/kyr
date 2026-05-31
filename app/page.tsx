@@ -12,12 +12,14 @@ import { ServicesSection }   from '@/components/ServicesSection';
 import { GallerySection }    from '@/components/GallerySection';
 import { AdvantageSection }  from '@/components/AdvantageSection';
 import { FoundersSection }   from '@/components/FoundersSection';
-import { InvestSection }     from '@/components/InvestSection';
-import { QuoteSection }      from '@/components/QuoteSection';
-import { ContactSection }    from '@/components/ContactSection';
-import { FooterSection }     from '@/components/FooterSection';
+import { InvestSection }              from '@/components/InvestSection';
+import { PropertyCatalogueSection }  from '@/components/PropertyCatalogueSection';
+import { QuoteSection }              from '@/components/QuoteSection';
+import { ContactSection }            from '@/components/ContactSection';
+import { FooterSection }             from '@/components/FooterSection';
 
-const GSAPAnimations = dynamic(() => import('@/components/GSAPAnimations'), { ssr: false });
+const GSAPAnimations      = dynamic(() => import('@/components/GSAPAnimations'),      { ssr: false });
+const CatalogueAnimations = dynamic(() => import('@/components/CatalogueAnimations'), { ssr: false });
 
 export default function Home() {
   return (
@@ -53,12 +55,14 @@ export default function Home() {
       <AdvantageSection />
       <FoundersSection />
       <InvestSection />
+      <PropertyCatalogueSection />
       <QuoteSection />
       <ContactSection />
       <FooterSection />
 
       {/* ── GSAP + Three.js init (client-only) ── */}
       <GSAPAnimations />
+      <CatalogueAnimations />
     </>
   );
 }
