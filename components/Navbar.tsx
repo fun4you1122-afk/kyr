@@ -6,7 +6,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -14,7 +14,7 @@ export function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
+    <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`} role="navigation">
       <div className="container">
         <div className="nav__inner">
           <a href="#top" className="nav__logo" onClick={close}>KYR</a>
@@ -27,7 +27,7 @@ export function Navbar() {
           </ul>
 
           <div className="nav__right">
-            <a href="#contact" className="btn-primary nav__cta">Enquire Now</a>
+            <a href="#contact" className="nav__cta-link btn-primary">Enquire Now</a>
             <button
               className={`nav__burger${open ? ' nav__burger--open' : ''}`}
               aria-label="Toggle menu"
@@ -46,7 +46,7 @@ export function Navbar() {
           <a href="#services" onClick={close}>Services</a>
           <a href="#about" onClick={close}>About</a>
           <a href="#contact" onClick={close}>Contact</a>
-          <a href="#contact" className="btn-primary" onClick={close}>Enquire Now</a>
+          <a href="#contact" className="btn-primary" style={{marginTop:'8px'}} onClick={close}>Enquire Now</a>
         </div>
       )}
     </nav>

@@ -80,45 +80,47 @@ const PROPERTIES: Property[] = [
 
 export function PropertyCatalogueSection() {
   return (
-    <section className="catalogue-section" id="catalogue">
+    <section className="props-section" id="catalogue">
       <div className="container">
-        <div className="catalogue-section__head">
-          <span className="eyebrow">Featured Properties</span>
-          <h2 className="section-title">
-            Curated listings for the discerning investor.
-          </h2>
-          <p className="catalogue-section__sub">
-            Each property is individually assessed for capital appreciation,
-            yield, and location premium.
-          </p>
+        <div className="props-section__head">
+          <div className="props-section__text">
+            <span className="eyebrow">Featured Properties</span>
+            <h2 className="props-section__title">
+              Curated listings across Dubai&apos;s finest addresses.
+            </h2>
+          </div>
+          <a href="#contact" className="props-section__all">
+            View All Properties →
+          </a>
         </div>
 
-        <div className="prop-grid">
+        <div className="props-grid">
           {PROPERTIES.map((prop) => (
-            <div key={prop.id} className="prop-card">
-              <div className="prop-card__img">
+            <article className="prop-card" key={prop.id}>
+              <a href="#contact" className="prop-card__img-wrap">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={prop.image} alt={prop.name} loading="lazy" />
-              </div>
-              <div className="prop-card__body">
-                <span className="prop-card__location">{prop.location}</span>
-                <h3 className="prop-card__name">{prop.name}</h3>
-                <div className="prop-card__meta">
-                  <span>{prop.type}</span>
-                  <span className="prop-card__meta-sep">·</span>
-                  <span>{prop.area}</span>
-                </div>
-                <p className="prop-card__price">{prop.price}</p>
                 <span
-                  className={`prop-card__status prop-card__status--${prop.status === "Ready" ? "ready" : "offplan"}`}
+                  className={`prop-card__badge prop-card__badge--${prop.status === "Ready" ? "ready" : "offplan"}`}
                 >
                   {prop.status}
                 </span>
-                <a className="prop-card__cta" href="#contact">
-                  Enquire →
-                </a>
+              </a>
+              <div className="prop-card__body">
+                <p className="prop-card__location">{prop.location}</p>
+                <h3 className="prop-card__name">{prop.name}</h3>
+                <div className="prop-card__row">
+                  <span>{prop.type}</span>
+                  <span>{prop.area}</span>
+                </div>
+                <div className="prop-card__footer">
+                  <strong className="prop-card__price">{prop.price}</strong>
+                  <a href="#contact" className="prop-card__link">
+                    Enquire →
+                  </a>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
