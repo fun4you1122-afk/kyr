@@ -187,8 +187,7 @@ export default function CatalogueAnimations() {
     }
 
     function checkToggle() {
-      if (window.innerWidth >= 800 && !animationEnabled) initAnimationScript();
-      else if (window.innerWidth < 800 && animationEnabled) disableAnim();
+      if (!animationEnabled) initAnimationScript();
     }
 
     checkToggle();
