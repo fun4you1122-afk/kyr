@@ -21,12 +21,13 @@ export default function CatalogueAnimations() {
       let lastY = window.scrollY;
       let ticking = false;
       let active = false;
+      const MUL = 1.4;
 
       function cacheTop() {
         cachedTop = container!.getBoundingClientRect().top + window.scrollY;
       }
 
-      const totalH = winH * total * 2;
+      const totalH = winH * total * MUL;
       container.style.height = `${totalH}px`;
       cacheTop();
 
@@ -39,7 +40,7 @@ export default function CatalogueAnimations() {
           const ov = s.querySelector<HTMLElement>('.overlay');
           if (ov) ov.style.transform = 'translate3d(0,0,0) rotateY(0deg)';
           s.style.position = 'absolute';
-          s.style.top = `${i * winH * 2}px`;
+          s.style.top = `${i * winH * MUL}px`;
           s.style.left = '0';
           s.style.transform = 'translate3d(0,0,0)';
           s.style.opacity = '0.3';
@@ -65,14 +66,14 @@ export default function CatalogueAnimations() {
         const adj = scrollY - cachedTop;
         sections.forEach((s, idx) => {
           const ov = s.querySelector<HTMLElement>('.overlay');
-          const start = idx * winH * 2,
-            end = start + winH * 2;
+          const start = idx * winH * MUL,
+            end = start + winH * MUL;
           const isLeft = ov?.classList.contains('overlay-left');
           const maxRot = isLeft ? -180 : 180,
             trans = isLeft ? -10 : 10;
 
           if (adj >= start && adj < end) {
-            const prog = (adj - start) / (winH * 2);
+            const prog = (adj - start) / (winH * MUL);
             if (prog <= 0.5) {
               const open = Math.min(1, prog * 2),
                 rot = maxRot * open,
@@ -100,12 +101,12 @@ export default function CatalogueAnimations() {
             s.style.position = 'absolute';
             s.style.top = `${start}px`;
             const dist = start - adj,
-              p = Math.min(100, (dist / (winH * 2)) * 200);
+              p = Math.min(100, (dist / (winH * MUL)) * 200);
             s.style.transform = `translate3d(0,${p}px,0)`;
-            s.style.opacity = Math.max(0.3, 1 - (dist / (winH * 2)) * 1.4).toString();
+            s.style.opacity = Math.max(0.3, 1 - (dist / (winH * MUL)) * 1.4).toString();
             s.style.zIndex = '1';
           } else if (adj >= end) {
-            const past = (adj - end) / (winH * 2);
+            const past = (adj - end) / (winH * MUL);
             if (ov)
               ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot * 0.78}deg)`;
             s.style.position = 'absolute';
@@ -131,7 +132,7 @@ export default function CatalogueAnimations() {
       function initPos() {
         winH = window.innerHeight;
         cacheTop();
-        container!.style.height = `${winH * total * 2}px`;
+        container!.style.height = `${winH * total * MUL}px`;
         const shouldActive = window.scrollY >= cachedTop;
         active = shouldActive;
         if (!shouldActive) {
@@ -139,7 +140,7 @@ export default function CatalogueAnimations() {
         } else {
           sections.forEach((s, i) => {
             s.style.position = 'absolute';
-            s.style.top = `${i * winH * 2}px`;
+            s.style.top = `${i * winH * MUL}px`;
             s.style.left = '0';
             s.style.transform = 'translate3d(0,0,0)';
             s.style.width = '100%';

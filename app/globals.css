@@ -161,9 +161,10 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
 .hero__side{position:absolute;left:clamp(22px,5vw,72px);top:50%;transform:rotate(-90deg);transform-origin:left center;
   font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted)}
 .hero__eyebrow{color:var(--gold-2)}
-.hero__title{font-size:clamp(30px,5.8vw,84px);font-weight:300;letter-spacing:-.015em;
+.hero__title{font-size:clamp(22px,4vw,58px);font-weight:300;letter-spacing:-.015em;
   text-shadow:0 6px 44px rgba(0,0,0,.55);perspective:800px}
 .hero__title em{font-style:italic;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero__title .char em{background:none;-webkit-text-fill-color:var(--gold-2);font-style:italic}
 .title-line{display:block;overflow:hidden;white-space:nowrap}
 .char{display:inline-block;overflow:hidden;line-height:1.1;vertical-align:bottom}
 .char-i{display:inline-block;will-change:transform}
@@ -202,7 +203,7 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
 /* ================= SERVICES ================= */
 .services{padding:150px 0 60px}
 .services__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:40px}
-.services__head h2{font-size:clamp(26px,3.8vw,56px);font-weight:300;max-width:13ch}
+.services__head h2{font-size:clamp(22px,3.2vw,46px);font-weight:300;max-width:24ch}
 .services__head p{max-width:36ch;color:var(--ink-soft);font-size:16px}
 .srow{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:clamp(20px,4vw,70px);
   padding:46px 0;border-top:1px solid var(--line-soft);position:relative;transition:padding .5s var(--ease);cursor:pointer}

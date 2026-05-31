@@ -9,7 +9,7 @@ export function InvestSection() {
           <div className="visa__pic">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1582407947304-fd86f28f0046?w=900&q=90&fit=crop"
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=90&fit=crop"
               alt="Dubai luxury real estate — Golden Visa investment"
             />
           </div>
