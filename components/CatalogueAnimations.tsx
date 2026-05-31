@@ -79,8 +79,8 @@ export default function CatalogueAnimations() {
                 rot = maxRot * open,
                 tx = trans * open;
               if (ov) ov.style.transform = `translate3d(${tx}px,0,0) rotateY(${rot}deg)`;
-              s.style.position = 'sticky';
-              s.style.top = '0';
+              s.style.position = 'absolute';
+              s.style.top = `${adj}px`;
               s.style.transform = 'translate3d(0,0,0)';
               s.style.opacity = '1';
               s.style.zIndex = String(total - idx);
@@ -90,8 +90,8 @@ export default function CatalogueAnimations() {
               const eased = ease(scrollP),
                 ty = -eased * winH,
                 op = 1 - eased * 0.8;
-              s.style.position = 'sticky';
-              s.style.top = '0';
+              s.style.position = 'absolute';
+              s.style.top = `${adj}px`;
               s.style.transform = `translate3d(0,${ty}px,0)`;
               s.style.opacity = op.toString();
               s.style.zIndex = String(total - idx);

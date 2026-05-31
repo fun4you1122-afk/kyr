@@ -305,7 +305,7 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
 
 .image-section{
   height:100vh;display:flex;align-items:center;justify-content:center;
-  position:sticky;top:0;pointer-events:auto}
+  position:absolute;top:0;pointer-events:auto}
 
 .image-container{
   position:relative;
@@ -321,7 +321,10 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
 .image-section[data-index="3"] .image-container,
 .image-section[data-index="5"] .image-container{left:-15%}
 
-.image-box{width:100%;height:100%;position:relative;transform-style:preserve-3d}
+.image-box{
+  width:100%;height:100%;position:relative;
+  -webkit-transform-style:preserve-3d;transform-style:preserve-3d;
+  -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 
 .image-visible{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -329,11 +332,13 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
 
 .overlay{
   position:absolute;top:0;left:0;width:100%;height:100%;
-  transform-style:preserve-3d}
+  -webkit-transform-style:preserve-3d;transform-style:preserve-3d}
 
 .overlay-front,.overlay-back{
   position:absolute;width:100%;height:100%;
-  backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px}
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  border-radius:2px;
+  -webkit-transform:translateZ(0);transform:translateZ(0)}
 
 /* ── Front face: KYR dark with gold accent ── */
 .overlay-front{
@@ -362,7 +367,9 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
 
 /* ── Back face: KYR dark two-page spread ── */
 .overlay-back{
-  background:var(--panel);transform:rotateY(180deg);
+  background:var(--panel);
+  -webkit-transform:rotateY(180deg) translateZ(0);
+  transform:rotateY(180deg) translateZ(0);
   display:flex;overflow:hidden}
 
 .overlay-left{transform-origin:left center}
