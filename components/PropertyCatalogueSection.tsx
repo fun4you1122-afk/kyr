@@ -1,202 +1,126 @@
-'use client';
-
-const GCS = 'https://storage.googleapis.com/kyrwebsite-frontend-620364934597/KYR%20Banners';
-
 interface Property {
   id: number;
   name: string;
   location: string;
   type: string;
   area: string;
-  status: string;
+  status: "Ready" | "Off-Plan";
   price: string;
-  roi: string;
-  description: string;
   image: string;
-  side: 'left' | 'right';
 }
 
 const PROPERTIES: Property[] = [
   {
-    id: 0,
-    name: 'One Palm',
-    location: 'Palm Jumeirah',
-    type: '4BR Penthouse',
-    area: '6,400 sqft',
-    status: 'Off-Plan · Q4 2026',
-    price: 'AED 14,500,000',
-    roi: '6.8% projected ROI',
-    description:
-      'Crowning the iconic crescent of Palm Jumeirah, these residences command unrivalled panoramic views of the Arabian Gulf and Dubai skyline — delivered with private infinity-pool terraces and full hotel services.',
-    image: `${GCS}/Beyond%20luxry%20Its%20Elegance%20elevated%20to%20elite.jpg`,
-    side: 'left',
-  },
-  {
     id: 1,
-    name: 'Creek Vista Reserve',
-    location: 'Dubai Creek Harbour',
-    type: '2BR Apartment',
-    area: '1,820 sqft',
-    status: 'Ready to Move',
-    price: 'AED 3,200,000',
-    roi: '7.4% rental yield',
-    description:
-      'Positioned against the backdrop of Creek Island, these residences offer floor-to-ceiling glazing with direct water views, a curated wellness podium, and instant Downtown connectivity.',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=90&fit=crop',
-    side: 'right',
+    name: "One Palm",
+    location: "Palm Jumeirah",
+    type: "4BR Penthouse",
+    area: "6,400 sqft",
+    status: "Off-Plan",
+    price: "AED 14,500,000",
+    image:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=85&fit=crop",
   },
   {
     id: 2,
-    name: 'Hartland Forest Villas',
-    location: 'Mohammed Bin Rashid City',
-    type: '5BR Villa',
-    area: '9,200 sqft',
-    status: 'Ready to Move',
-    price: 'AED 18,900,000',
-    roi: '5.2% projected ROI',
-    description:
-      'Enveloped by 7 million square feet of protected parkland, these signature villas deliver private pools, home automation, and a coveted address within minutes of the Burj Khalifa.',
-    image: `${GCS}/Trust%20always%20growing%20with%20you%20on%20your%20property%20journey.jpg`,
-    side: 'left',
+    name: "Creek Vista Reserve",
+    location: "Dubai Creek Harbour",
+    type: "2BR Apartment",
+    area: "1,820 sqft",
+    status: "Ready",
+    price: "AED 3,200,000",
+    image:
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=85&fit=crop",
   },
   {
     id: 3,
-    name: 'Marina Gate',
-    location: 'Dubai Marina',
-    type: '2BR Apartment',
-    area: '1,380 sqft',
-    status: 'Ready to Move',
-    price: 'AED 2,850,000',
-    roi: '8.1% rental yield',
-    description:
-      'Rising from the waterfront promenade of Dubai Marina, these residences combine sweeping sea views with direct Marina Walk access and a world-class resident amenity suite.',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=90&fit=crop',
-    side: 'right',
+    name: "Hartland Forest Villas",
+    location: "MBR City",
+    type: "5BR Villa",
+    area: "9,200 sqft",
+    status: "Ready",
+    price: "AED 18,900,000",
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=85&fit=crop",
   },
   {
     id: 4,
-    name: 'Emaar Beachfront',
-    location: 'Dubai Harbour',
-    type: '3BR Apartment',
-    area: '2,100 sqft',
-    status: 'Off-Plan · Q2 2026',
-    price: 'AED 7,400,000',
-    roi: '6.5% projected ROI',
-    description:
-      "Steps from a private beach on Dubai Harbour's prestigious peninsula, these waterfront residences command unobstructed views of the Arabian Gulf and Palm Jumeirah.",
-    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=90&fit=crop',
-    side: 'left',
+    name: "Marina Gate",
+    location: "Dubai Marina",
+    type: "2BR Apartment",
+    area: "1,380 sqft",
+    status: "Ready",
+    price: "AED 2,850,000",
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85&fit=crop",
   },
   {
     id: 5,
-    name: 'DG1 Downtown',
-    location: 'Downtown Dubai',
-    type: '1BR Apartment',
-    area: '1,050 sqft',
-    status: 'Off-Plan · Q1 2025',
-    price: 'AED 1,950,000',
-    roi: '8.4% rental yield',
-    description:
-      "At the heart of Downtown Dubai's cultural district, DG1 apartments blend architectural precision with panoramic Burj Khalifa views — the city's most coveted residential address.",
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=90&fit=crop',
-    side: 'right',
+    name: "Emaar Beachfront",
+    location: "Dubai Harbour",
+    type: "3BR Apartment",
+    area: "2,100 sqft",
+    status: "Off-Plan",
+    price: "AED 7,400,000",
+    image:
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=85&fit=crop",
+  },
+  {
+    id: 6,
+    name: "DG1 Downtown",
+    location: "Downtown Dubai",
+    type: "1BR Apartment",
+    area: "1,050 sqft",
+    status: "Off-Plan",
+    price: "AED 1,950,000",
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85&fit=crop",
   },
 ];
 
 export function PropertyCatalogueSection() {
   return (
-    <section className="pcat" id="catalogue">
-      {/* ── Section header ── */}
-      <div className="pcat__header wrap">
-        <span className="eyebrow up">Property Catalogue</span>
-        <h2 className="pcat__title up">
-          Curated for the <em>discerning</em> investor.
-        </h2>
-        <p className="pcat__sub up">
-          Each listing is individually assessed for capital appreciation, rental yield, and location
-          premium — positioned for those who invest with precision.
-        </p>
-      </div>
+    <section className="catalogue-section" id="catalogue">
+      <div className="container">
+        <div className="catalogue-section__head">
+          <span className="eyebrow">Featured Properties</span>
+          <h2 className="section-title">
+            Curated listings for the discerning investor.
+          </h2>
+          <p className="catalogue-section__sub">
+            Each property is individually assessed for capital appreciation,
+            yield, and location premium.
+          </p>
+        </div>
 
-      {/* ── Desktop: CodePen scroll-driven book-flip ── */}
-      <div className="scroll-container" id="pcatScrollContainer">
-        {PROPERTIES.map((prop) => (
-          <div className="image-section" data-index={prop.id} key={prop.id}>
-            <div className="image-container">
-              <div className="image-box">
+        <div className="prop-grid">
+          {PROPERTIES.map((prop) => (
+            <div key={prop.id} className="prop-card">
+              <div className="prop-card__img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={prop.image} alt={prop.name} className="image-visible" />
-                <div className={`overlay overlay-${prop.side}`}>
-
-                  {/* Front face */}
-                  <div className="overlay-front">
-                    <div className="overlay-content">
-                      <span className="prop-location">{prop.location}</span>
-                      <h2>{prop.name}</h2>
-                      <div className="prop-gem">✦</div>
-                      <span className="prop-status">{prop.status}</span>
-                    </div>
-                  </div>
-
-                  {/* Back face — two-page spread */}
-                  <div className="overlay-back">
-                    <div className="left-page">
-                      <h3>{prop.name}</h3>
-                      <p className="description">{prop.description}</p>
-                      <ul className="prop-specs">
-                        <li><span>Type</span>{prop.type}</li>
-                        <li><span>Area</span>{prop.area}</li>
-                        <li><span>Status</span>{prop.status}</li>
-                        <li><span>Yield</span>{prop.roi}</li>
-                      </ul>
-                    </div>
-                    <div className="right-page">
-                      <figure>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={prop.image} alt={prop.name} />
-                      </figure>
-                      <p className="price">{prop.price}</p>
-                      <a className="view-btn" href="#contact">
-                        Book Viewing <i>→</i>
-                      </a>
-                    </div>
-                  </div>
-
+                <img src={prop.image} alt={prop.name} loading="lazy" />
+              </div>
+              <div className="prop-card__body">
+                <span className="prop-card__location">{prop.location}</span>
+                <h3 className="prop-card__name">{prop.name}</h3>
+                <div className="prop-card__meta">
+                  <span>{prop.type}</span>
+                  <span className="prop-card__meta-sep">·</span>
+                  <span>{prop.area}</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Mobile: stacked cards ── */}
-      <div className="mobile-products">
-        {PROPERTIES.map((prop) => (
-          <div className="mobile-product-card" key={prop.id}>
-            <div className="overlay-back">
-              <div className="left-page">
-                <h3>{prop.name}</h3>
-                <p className="description">{prop.description}</p>
-                <ul className="prop-specs">
-                  <li><span>Type</span>{prop.type}</li>
-                  <li><span>Area</span>{prop.area}</li>
-                  <li><span>Status</span>{prop.status}</li>
-                  <li><span>Yield</span>{prop.roi}</li>
-                </ul>
-              </div>
-              <div className="right-page">
-                <figure>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={prop.image} alt={prop.name} />
-                </figure>
-                <p className="price">{prop.price}</p>
-                <a className="view-btn view-btn--wide" href="#contact">
-                  Book Viewing <i>→</i>
+                <p className="prop-card__price">{prop.price}</p>
+                <span
+                  className={`prop-card__status prop-card__status--${prop.status === "Ready" ? "ready" : "offplan"}`}
+                >
+                  {prop.status}
+                </span>
+                <a className="prop-card__cta" href="#contact">
+                  Enquire →
                 </a>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

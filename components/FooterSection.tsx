@@ -1,56 +1,129 @@
-'use client';
-export function FooterSection() {
+const navLinks = [
+  { label: "Properties", href: "#properties" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+export default function FooterSection() {
   return (
-    <footer className="footer">
-      <div className="wrap">
-        <div className="footer__top">
-          <div className="footer__brand">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://www.kyr.ae/KYR%20LOGO%20WHITE.svg" alt="KYR Real Estate" />
-            <p>
-              Redefining real estate through transparency, expertise, and precision. Your trusted
-              partner for off-plan and high-ROI properties in Dubai.
-            </p>
-            <div className="socials">
-              <a href="https://www.instagram.com/kyrrealestate/" target="_blank" rel="noopener" data-cursor="true">Instagram</a>
-              <a href="https://wa.me/971585820297" target="_blank" rel="noopener" data-cursor="true">WhatsApp</a>
-              <a href="https://www.tiktok.com/@kyr_realestate" target="_blank" rel="noopener" data-cursor="true">TikTok</a>
-            </div>
+    <footer className="footer-section">
+      <div className="container">
+        <div className="footer-top">
+          {/* Wordmark / logo */}
+          <div className="footer-brand">
+            <span className="footer-wordmark">KYR</span>
+            <p className="footer-tagline">Dubai&apos;s trusted real estate partner.</p>
           </div>
 
-          <div className="footer__col">
-            <h4>Quick Links</h4>
-            <a href="#top">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#advantage">Opportunities</a>
-            <a href="#invest">Invest</a>
-            <a href="#contact">Contact Us</a>
-          </div>
-
-          <div className="footer__col">
-            <h4>Premium Services</h4>
-            <a href="#standard">Off-Plan Projects</a>
-            <a href="#invest">Golden Visa</a>
-            <a href="#invest">Property Management</a>
-            <a href="#invest">Market Reports</a>
-          </div>
-
-          <div className="footer__col">
-            <h4>Contact</h4>
-            <a href="tel:+971585820297">+971 58 582 0297</a>
-            <a href="mailto:info@kyr.ae">info@kyr.ae</a>
-            <a href="mailto:sales@kyr.ae">sales@kyr.ae</a>
-            <a href="#">UAE, Dubai</a>
-          </div>
+          {/* Navigation */}
+          <nav className="footer-nav" aria-label="Footer navigation">
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} className="footer-nav__link">
+                {link.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <div className="footer__word">KYR</div>
-
-        <div className="footer__bottom">
-          <span>© 2026 KYR Real Estate. All Rights Reserved.</span>
-          <span>Designed for Excellence.</span>
+        <div className="footer-bottom">
+          <span>© 2025 KYR Real Estate. All rights reserved.</span>
+          <span className="footer-bottom__dot" aria-hidden="true">·</span>
+          <span>RERA Licensed</span>
         </div>
       </div>
+
+      <style>{`
+        .footer-section {
+          background-color: #111110;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 56px 0 40px;
+        }
+
+        .footer-top {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 32px;
+          margin-bottom: 40px;
+          flex-wrap: wrap;
+        }
+
+        .footer-brand {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .footer-wordmark {
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: 2rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          color: #ffffff;
+          line-height: 1;
+        }
+
+        .footer-tagline {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.875rem;
+          color: rgba(255, 255, 255, 0.4);
+          font-weight: 300;
+        }
+
+        .footer-nav {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+
+        .footer-nav__link {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.8125rem;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+
+        .footer-nav__link:hover {
+          color: #A0724A;
+        }
+
+        .footer-bottom {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding-top: 28px;
+          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          font-family: 'Inter', sans-serif;
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.28);
+          flex-wrap: wrap;
+        }
+
+        .footer-bottom__dot {
+          opacity: 0.4;
+        }
+
+        @media (max-width: 600px) {
+          .footer-top {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 32px;
+          }
+
+          .footer-nav {
+            gap: 20px;
+          }
+
+          .footer-section {
+            padding: 48px 0 32px;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

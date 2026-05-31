@@ -1,11 +1,13 @@
-'use client';
 export function QuoteSection() {
   return (
-    <section className="quote wrap">
-      <p className="quote__text split">
-        &ldquo;Real estate is not just about property. It is about positioning, investment intelligence, and unlocking the right opportunities at the right time.&rdquo;
-      </p>
-      <span className="quote__by up">— The KYR Philosophy</span>
+    <section className="quote-section">
+      <div className="container">
+        <p className="quote-section__text">
+          &ldquo;Real estate is not about property — it is about positioning, intelligence, and the
+          right partnership.&rdquo;
+        </p>
+        <span className="quote-section__by">— The KYR Philosophy</span>
+      </div>
     </section>
   );
 }
