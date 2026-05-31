@@ -423,20 +423,29 @@ html.no-gsap .line-i,html.no-gsap .word-i{transform:none}
   .mobile-products{display:block;padding:0 20px 60px}
   .mobile-product-card{
     background:var(--panel);border:1px solid var(--line-soft);
-    border-radius:2px;overflow:hidden;margin-bottom:20px}
+    border-radius:2px;margin-bottom:24px;overflow:visible}
   .mobile-product-card .overlay-back{
-    position:relative;transform:none;
-    display:flex;flex-direction:column}
+    position:relative!important;transform:none!important;
+    -webkit-backface-visibility:visible!important;backface-visibility:visible!important;
+    display:flex!important;flex-direction:column;
+    width:100%!important;height:auto!important;overflow:visible}
   .mobile-product-card .left-page,
   .mobile-product-card .right-page{
-    flex:none;width:100%;border-right:none;border-left:none;padding:22px}
-  .mobile-product-card .left-page{border-bottom:1px solid var(--line-soft)}
-  .mobile-product-card figure{text-align:center;margin-bottom:12px}
+    position:static;flex:none;width:100%;box-sizing:border-box;
+    border-right:none;border-left:none;padding:24px;overflow:visible}
+  .mobile-product-card .left-page{
+    background:var(--bg-2);border-bottom:1px solid var(--line-soft);
+    justify-content:flex-start}
+  .mobile-product-card .right-page{background:var(--panel);align-items:center}
+  .mobile-product-card figure{text-align:center;margin-bottom:14px;width:100%}
   .mobile-product-card figure img{
-    width:100%;height:200px;border-radius:2px;
+    width:100%;height:220px;border-radius:2px;
     object-fit:cover;display:block}
-  .mobile-product-card h3{font-size:22px;margin-bottom:8px}
-  .mobile-product-card .price{text-align:center;font-size:18px;margin:10px 0}
+  .mobile-product-card h3{font-size:clamp(18px,5vw,24px);margin-bottom:10px}
+  .mobile-product-card .description{font-size:13px}
+  .mobile-product-card .prop-specs li{font-size:12px}
+  .mobile-product-card .price{text-align:center;font-size:clamp(16px,4.5vw,20px);margin:10px 0 16px}
+  .mobile-product-card .view-btn--wide{font-size:11px;padding:14px 20px}
 }
 
 /* ================= QUOTE ================= */
