@@ -1,22 +1,350 @@
 1:"$Sreact.fragment"
 2:I[7555,[],""]
 3:I[1295,[],""]
-4:I[894,[],"ClientPageRoot"]
-5:I[1551,["974","static/chunks/app/page-d5c0c103078b263f.js"],"default"]
+4:I[7969,["974","static/chunks/app/page-de987d61e87bdd65.js"],"Navbar"]
 8:I[9665,[],"OutletBoundary"]
 b:I[4911,[],"AsyncMetadataOutlet"]
 d:I[9665,[],"ViewportBoundary"]
 f:I[9665,[],"MetadataBoundary"]
 11:I[6614,[],""]
-:HL["/_next/static/css/46c5251900a441ef.css","style"]
-0:{"P":null,"b":"N5ANlRHnFqpiprifNvTxB","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/46c5251900a441ef.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"js","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap","rel":"stylesheet"}]]}],["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L4",null,{"Component":"$5","searchParams":{},"params":{},"promises":["$@6","$@7"]}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","WapKFQRiiydiWQZiVHoLav",{"children":[["$","$Ld",null,{"children":"$Le"}],null]}],["$","$Lf",null,{"children":"$L10"}]]}],false]],"m":"$undefined","G":["$11","$undefined"],"s":false,"S":true}
+:HL["/_next/static/css/ba6362716adbe06d.css","style"]
+5:T77e,
+        .founders-section {
+          padding: 100px 0;
+        }
+
+        .founders-header {
+          max-width: 680px;
+          margin-bottom: 64px;
+        }
+
+        .team-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+        }
+
+        .team-card {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .team-card__photo {
+          width: 100%;
+          aspect-ratio: 5 / 6;
+          overflow: hidden;
+          background-color: #1a1917;
+          margin-bottom: 24px;
+        }
+
+        .team-card__photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-card__photo img {
+          transform: scale(1.04);
+        }
+
+        .team-card__name {
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: 1.25rem;
+          font-weight: 500;
+          color: #ffffff;
+          margin-bottom: 6px;
+          line-height: 1.3;
+        }
+
+        .team-card__role {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.6875rem;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #A0724A;
+          margin-bottom: 16px;
+        }
+
+        .team-card__bio {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.9375rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 900px) {
+          .team-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 580px) {
+          .founders-section {
+            padding: 72px 0;
+          }
+
+          .team-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      6:T1019,
+        .contact-section {
+          padding: 100px 0;
+        }
+
+        .contact-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: start;
+        }
+
+        /* ── Info column ── */
+        .contact-info__sub {
+          font-family: 'Inter', sans-serif;
+          font-size: 1rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.5);
+          margin-top: 20px;
+          margin-bottom: 40px;
+          max-width: 420px;
+        }
+
+        .contact-details {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .contact-details li {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.9375rem;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.5;
+        }
+
+        .contact-details__icon {
+          font-size: 1rem;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+
+        .contact-details a {
+          color: rgba(255, 255, 255, 0.6);
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+
+        .contact-details a:hover {
+          color: #A0724A;
+        }
+
+        /* ── Form column ── */
+        .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 28px;
+        }
+
+        .contact-form__field {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .contact-form__field label {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.6875rem;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.45);
+        }
+
+        .contact-form__optional {
+          font-size: 0.625rem;
+          letter-spacing: 0.08em;
+          color: rgba(255, 255, 255, 0.3);
+          font-weight: 400;
+          text-transform: none;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 0;
+          padding: 10px 0;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.9375rem;
+          font-weight: 300;
+          color: #ffffff;
+          outline: none;
+          transition: border-color 0.25s ease;
+          width: 100%;
+          appearance: none;
+          -webkit-appearance: none;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+          color: rgba(255, 255, 255, 0.22);
+        }
+
+        .contact-form select {
+          color: rgba(255, 255, 255, 0.22);
+          cursor: pointer;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 4px center;
+          padding-right: 24px;
+        }
+
+        .contact-form select option {
+          background: #111110;
+          color: #ffffff;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+          border-bottom-color: #A0724A;
+        }
+
+        .contact-form textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+
+        .contact-form__submit {
+          margin-top: 8px;
+          align-self: flex-start;
+        }
+
+        @media (max-width: 860px) {
+          .contact-layout {
+            grid-template-columns: 1fr;
+            gap: 56px;
+          }
+
+          .contact-info__sub {
+            max-width: 100%;
+          }
+        }
+
+        @media (max-width: 580px) {
+          .contact-section {
+            padding: 72px 0;
+          }
+        }
+      7:T869,
+        .footer-section {
+          background-color: #111110;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 56px 0 40px;
+        }
+
+        .footer-top {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 32px;
+          margin-bottom: 40px;
+          flex-wrap: wrap;
+        }
+
+        .footer-brand {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .footer-wordmark {
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: 2rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          color: #ffffff;
+          line-height: 1;
+        }
+
+        .footer-tagline {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.875rem;
+          color: rgba(255, 255, 255, 0.4);
+          font-weight: 300;
+        }
+
+        .footer-nav {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+
+        .footer-nav__link {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.8125rem;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+
+        .footer-nav__link:hover {
+          color: #A0724A;
+        }
+
+        .footer-bottom {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding-top: 28px;
+          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          font-family: 'Inter', sans-serif;
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.28);
+          flex-wrap: wrap;
+        }
+
+        .footer-bottom__dot {
+          opacity: 0.4;
+        }
+
+        @media (max-width: 600px) {
+          .footer-top {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 32px;
+          }
+
+          .footer-nav {
+            gap: 20px;
+          }
+
+          .footer-section {
+            padding: 48px 0 32px;
+          }
+        }
+      0:{"P":null,"b":"JCoAjjXRwAIGyCmU9Q6Qw","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ba6362716adbe06d.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap","rel":"stylesheet"}]]}],["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[[["$","$L4",null,{}],["$","main",null,{"children":[["$","section",null,{"className":"hero","id":"top","children":[["$","div",null,{"className":"hero__grid","children":[["$","div",null,{"className":"hero__left","children":[["$","span",null,{"className":"eyebrow","children":"Luxury Real Estate · Dubai, UAE"}],["$","h1",null,{"className":"hero__title","children":"Where Dubai's finest properties meet the right buyer."}],["$","p",null,{"className":"hero__sub","children":"KYR connects qualified buyers with exceptional properties across Dubai's most prestigious addresses — with complete transparency and proven results."}],["$","div",null,{"className":"hero__actions","children":[["$","a",null,{"href":"#catalogue","className":"btn-primary","children":"Browse Properties"}],["$","a",null,{"href":"#contact","className":"btn-ghost","children":"Schedule a Call"}]]}]]}],["$","div",null,{"className":"hero__right","children":[["$","img",null,{"src":"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=85&fit=crop","alt":"Luxury villa exterior in Dubai"}],["$","div",null,{"className":"hero__badge","children":"500+ Transactions · AED 2B+ Closed"}]]}]]}],["$","div",null,{"className":"hero__stats","children":[["$","div",null,{"className":"hero__stat","children":[["$","strong",null,{"children":"500+"}],["$","span",null,{"children":"Properties Sold"}]]}],["$","div",null,{"className":"hero__stat","children":[["$","strong",null,{"children":"AED 2B+"}],["$","span",null,{"children":"Total Value"}]]}],["$","div",null,{"className":"hero__stat","children":[["$","strong",null,{"children":"8 Years"}],["$","span",null,{"children":"In Market"}]]}],["$","div",null,{"className":"hero__stat","children":[["$","strong",null,{"children":"98%"}],["$","span",null,{"children":"Client Satisfaction"}]]}]]}]]}],["$","section",null,{"className":"services-section","id":"services","children":["$","div",null,{"className":"container","children":[["$","div",null,{"className":"services-section__head","children":[["$","span",null,{"className":"eyebrow","children":"What We Do"}],["$","h2",null,{"className":"section-title","children":"Comprehensive real estate services, delivered with precision."}]]}],["$","div",null,{"className":"svc-grid","children":[["$","div","01",{"className":"svc-card","children":[["$","span",null,{"className":"svc-card__number","children":"01"}],["$","h3",null,{"className":"svc-card__title","children":"Property Sales & Acquisition"}],["$","p",null,{"className":"svc-card__desc","children":"From luxury apartments to landmark villas, we match buyers with properties that align with their goals — whether for lifestyle, investment, or legacy."}]]}],["$","div","02",{"className":"svc-card","children":[["$","span",null,{"className":"svc-card__number","children":"02"}],["$","h3",null,{"className":"svc-card__title","children":"Off-Plan Investments"}],["$","p",null,{"className":"svc-card__desc","children":"Access curated off-plan projects from Dubai's top developers before public launch, with comprehensive ROI analysis and payment plan structuring."}]]}],["$","div","03",{"className":"svc-card","children":[["$","span",null,{"className":"svc-card__number","children":"03"}],["$","h3",null,{"className":"svc-card__title","children":"Golden Visa Advisory"}],["$","p",null,{"className":"svc-card__desc","children":"Secure your 10-year UAE residency through strategic real estate investment. We handle the entire process from property selection to PRO submission."}]]}],["$","div","04",{"className":"svc-card","children":[["$","span",null,{"className":"svc-card__number","children":"04"}],["$","h3",null,{"className":"svc-card__title","children":"Portfolio Management"}],["$","p",null,{"className":"svc-card__desc","children":"Hands-off asset management — tenant screening, leasing, rent collection, and maintenance — so your investment performs without the hassle."}]]}]]}]]}]}],["$","section",null,{"className":"catalogue-section","id":"catalogue","children":["$","div",null,{"className":"container","children":[["$","div",null,{"className":"catalogue-section__head","children":[["$","span",null,{"className":"eyebrow","children":"Featured Properties"}],["$","h2",null,{"className":"section-title","children":"Curated listings for the discerning investor."}],["$","p",null,{"className":"catalogue-section__sub","children":"Each property is individually assessed for capital appreciation, yield, and location premium."}]]}],["$","div",null,{"className":"prop-grid","children":[["$","div","1",{"className":"prop-card","children":[["$","div",null,{"className":"prop-card__img","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=85&fit=crop","alt":"One Palm","loading":"lazy"}]}],["$","div",null,{"className":"prop-card__body","children":[["$","span",null,{"className":"prop-card__location","children":"Palm Jumeirah"}],["$","h3",null,{"className":"prop-card__name","children":"One Palm"}],["$","div",null,{"className":"prop-card__meta","children":[["$","span",null,{"children":"4BR Penthouse"}],["$","span",null,{"className":"prop-card__meta-sep","children":"·"}],["$","span",null,{"children":"6,400 sqft"}]]}],["$","p",null,{"className":"prop-card__price","children":"AED 14,500,000"}],["$","span",null,{"className":"prop-card__status prop-card__status--offplan","children":"Off-Plan"}],["$","a",null,{"className":"prop-card__cta","href":"#contact","children":"Enquire →"}]]}]]}],["$","div","2",{"className":"prop-card","children":[["$","div",null,{"className":"prop-card__img","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=85&fit=crop","alt":"Creek Vista Reserve","loading":"lazy"}]}],["$","div",null,{"className":"prop-card__body","children":[["$","span",null,{"className":"prop-card__location","children":"Dubai Creek Harbour"}],["$","h3",null,{"className":"prop-card__name","children":"Creek Vista Reserve"}],["$","div",null,{"className":"prop-card__meta","children":[["$","span",null,{"children":"2BR Apartment"}],["$","span",null,{"className":"prop-card__meta-sep","children":"·"}],["$","span",null,{"children":"1,820 sqft"}]]}],["$","p",null,{"className":"prop-card__price","children":"AED 3,200,000"}],["$","span",null,{"className":"prop-card__status prop-card__status--ready","children":"Ready"}],["$","a",null,{"className":"prop-card__cta","href":"#contact","children":"Enquire →"}]]}]]}],["$","div","3",{"className":"prop-card","children":[["$","div",null,{"className":"prop-card__img","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=85&fit=crop","alt":"Hartland Forest Villas","loading":"lazy"}]}],["$","div",null,{"className":"prop-card__body","children":[["$","span",null,{"className":"prop-card__location","children":"MBR City"}],["$","h3",null,{"className":"prop-card__name","children":"Hartland Forest Villas"}],["$","div",null,{"className":"prop-card__meta","children":[["$","span",null,{"children":"5BR Villa"}],["$","span",null,{"className":"prop-card__meta-sep","children":"·"}],["$","span",null,{"children":"9,200 sqft"}]]}],["$","p",null,{"className":"prop-card__price","children":"AED 18,900,000"}],["$","span",null,{"className":"prop-card__status prop-card__status--ready","children":"Ready"}],["$","a",null,{"className":"prop-card__cta","href":"#contact","children":"Enquire →"}]]}]]}],["$","div","4",{"className":"prop-card","children":[["$","div",null,{"className":"prop-card__img","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85&fit=crop","alt":"Marina Gate","loading":"lazy"}]}],["$","div",null,{"className":"prop-card__body","children":[["$","span",null,{"className":"prop-card__location","children":"Dubai Marina"}],["$","h3",null,{"className":"prop-card__name","children":"Marina Gate"}],["$","div",null,{"className":"prop-card__meta","children":[["$","span",null,{"children":"2BR Apartment"}],["$","span",null,{"className":"prop-card__meta-sep","children":"·"}],["$","span",null,{"children":"1,380 sqft"}]]}],["$","p",null,{"className":"prop-card__price","children":"AED 2,850,000"}],["$","span",null,{"className":"prop-card__status prop-card__status--ready","children":"Ready"}],["$","a",null,{"className":"prop-card__cta","href":"#contact","children":"Enquire →"}]]}]]}],["$","div","5",{"className":"prop-card","children":[["$","div",null,{"className":"prop-card__img","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=85&fit=crop","alt":"Emaar Beachfront","loading":"lazy"}]}],["$","div",null,{"className":"prop-card__body","children":[["$","span",null,{"className":"prop-card__location","children":"Dubai Harbour"}],["$","h3",null,{"className":"prop-card__name","children":"Emaar Beachfront"}],["$","div",null,{"className":"prop-card__meta","children":[["$","span",null,{"children":"3BR Apartment"}],["$","span",null,{"className":"prop-card__meta-sep","children":"·"}],["$","span",null,{"children":"2,100 sqft"}]]}],["$","p",null,{"className":"prop-card__price","children":"AED 7,400,000"}],["$","span",null,{"className":"prop-card__status prop-card__status--offplan","children":"Off-Plan"}],["$","a",null,{"className":"prop-card__cta","href":"#contact","children":"Enquire →"}]]}]]}],["$","div","6",{"className":"prop-card","children":[["$","div",null,{"className":"prop-card__img","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85&fit=crop","alt":"DG1 Downtown","loading":"lazy"}]}],["$","div",null,{"className":"prop-card__body","children":[["$","span",null,{"className":"prop-card__location","children":"Downtown Dubai"}],["$","h3",null,{"className":"prop-card__name","children":"DG1 Downtown"}],["$","div",null,{"className":"prop-card__meta","children":[["$","span",null,{"children":"1BR Apartment"}],["$","span",null,{"className":"prop-card__meta-sep","children":"·"}],["$","span",null,{"children":"1,050 sqft"}]]}],["$","p",null,{"className":"prop-card__price","children":"AED 1,950,000"}],["$","span",null,{"className":"prop-card__status prop-card__status--offplan","children":"Off-Plan"}],["$","a",null,{"className":"prop-card__cta","href":"#contact","children":"Enquire →"}]]}]]}]]}]]}]}],["$","section",null,{"id":"about","className":"section--dark founders-section","children":[["$","div",null,{"className":"container","children":[["$","div",null,{"className":"founders-header","children":[["$","span",null,{"className":"eyebrow","children":"The Team"}],["$","h2",null,{"className":"section-title","children":"Experts who've closed over AED 2 billion in Dubai real estate."}]]}],["$","div",null,{"className":"team-grid","children":[["$","div","Khalid Al Rashidi",{"className":"team-card","children":[["$","div",null,{"className":"team-card__photo","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=85&fit=crop&crop=faces","alt":"Khalid Al Rashidi, Founder & CEO","width":400,"height":480}]}],["$","div",null,{"className":"team-card__body","children":[["$","h3",null,{"className":"team-card__name","children":"Khalid Al Rashidi"}],["$","p",null,{"className":"team-card__role","children":"Founder & CEO"}],["$","p",null,{"className":"team-card__bio","children":"15 years navigating Dubai's property market. Khalid brings deep market intelligence and a network spanning every major developer in the UAE."}]]}]]}],["$","div","Yusuf Rahman",{"className":"team-card","children":[["$","div",null,{"className":"team-card__photo","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=85&fit=crop&crop=faces","alt":"Yusuf Rahman, Head of Investments","width":400,"height":480}]}],["$","div",null,{"className":"team-card__body","children":[["$","h3",null,{"className":"team-card__name","children":"Yusuf Rahman"}],["$","p",null,{"className":"team-card__role","children":"Head of Investments"}],["$","p",null,{"className":"team-card__bio","children":"A specialist in off-plan acquisitions and ROI structuring, Yusuf has guided over 200 investors to high-yield portfolios across Dubai's growth corridors."}]]}]]}],["$","div","Sara Mubarak",{"className":"team-card","children":[["$","div",null,{"className":"team-card__photo","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=85&fit=crop&crop=faces","alt":"Sara Mubarak, Client Relations Director","width":400,"height":480}]}],["$","div",null,{"className":"team-card__body","children":[["$","h3",null,{"className":"team-card__name","children":"Sara Mubarak"}],["$","p",null,{"className":"team-card__role","children":"Client Relations Director"}],["$","p",null,{"className":"team-card__bio","children":"Sara ensures every client receives white-glove service from first consultation to handover — and beyond."}]]}]]}]]}]]}],["$","style",null,{"children":"$5"}]]}],["$","section",null,{"className":"invest-section","id":"invest","children":["$","div",null,{"className":"container","children":["$","div",null,{"className":"invest-section__inner","children":[["$","div",null,{"className":"invest-section__content","children":[["$","span",null,{"className":"eyebrow","children":"Residency Program"}],["$","h2",null,{"className":"section-title invest-section__title","children":"The UAE Golden Visa"}],["$","p",null,{"className":"invest-section__body","children":"Secure a 10-year renewable residency by investing in Dubai real estate — granting you and your family long-term stability, business advantages, and premium healthcare access."}],["$","ul",null,{"className":"checklist","children":[["$","li","Minimum investment: AED 2,000,000",{"children":"Minimum investment: AED 2,000,000"}],["$","li","Covers spouse, children & domestic staff",{"children":"Covers spouse, children & domestic staff"}],["$","li","No minimum physical presence required",{"children":"No minimum physical presence required"}],["$","li","KYR handles the entire PRO process",{"children":"KYR handles the entire PRO process"}]]}],["$","a",null,{"className":"btn-primary","href":"#contact","children":"Start Your Application"}]]}],["$","div",null,{"className":"invest-section__image","children":["$","img",null,{"src":"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=85&fit=crop","alt":"Dubai luxury real estate"}]}]]}]}]}],["$","section",null,{"className":"quote-section","children":["$","div",null,{"className":"container","children":[["$","p",null,{"className":"quote-section__text","children":"“Real estate is not about property — it is about positioning, intelligence, and the right partnership.”"}],["$","span",null,{"className":"quote-section__by","children":"— The KYR Philosophy"}]]}]}],["$","section",null,{"id":"contact","className":"section--dark contact-section","children":[["$","div",null,{"className":"container","children":["$","div",null,{"className":"contact-layout","children":[["$","div",null,{"className":"contact-info","children":[["$","span",null,{"className":"eyebrow","children":"Get In Touch"}],["$","h2",null,{"className":"section-title","children":"Let's find your next property."}],["$","p",null,{"className":"contact-info__sub","children":"Whether you're buying, investing, or need expert advice — our team responds within 24 hours."}],["$","ul",null,{"className":"contact-details","children":[["$","li",null,{"children":[["$","span",null,{"className":"contact-details__icon","aria-hidden":"true","children":"📍"}],["$","span",null,{"children":"Office 1402, Marina Plaza, Dubai Marina, UAE"}]]}],["$","li",null,{"children":[["$","span",null,{"className":"contact-details__icon","aria-hidden":"true","children":"📞"}],["$","a",null,{"href":"tel:+97140000000","children":"+971 4 000 0000"}]]}],["$","li",null,{"children":[["$","span",null,{"className":"contact-details__icon","aria-hidden":"true","children":"✉"}],["$","a",null,{"href":"mailto:hello@kyr.ae","children":"hello@kyr.ae"}]]}]]}]]}],["$","form",null,{"className":"contact-form","action":"#","method":"post","noValidate":true,"children":[["$","div",null,{"className":"contact-form__field","children":[["$","label",null,{"htmlFor":"cf-name","children":"Full Name"}],["$","input",null,{"id":"cf-name","type":"text","name":"name","placeholder":"Your full name","autoComplete":"name","required":true}]]}],["$","div",null,{"className":"contact-form__field","children":[["$","label",null,{"htmlFor":"cf-email","children":"Email Address"}],["$","input",null,{"id":"cf-email","type":"email","name":"email","placeholder":"you@example.com","autoComplete":"email","required":true}]]}],["$","div",null,{"className":"contact-form__field","children":[["$","label",null,{"htmlFor":"cf-phone","children":["Phone ",["$","span",null,{"className":"contact-form__optional","children":"(optional)"}]]}],["$","input",null,{"id":"cf-phone","type":"tel","name":"phone","placeholder":"+971 50 000 0000","autoComplete":"tel"}]]}],["$","div",null,{"className":"contact-form__field","children":[["$","label",null,{"htmlFor":"cf-type","children":"Enquiry Type"}],["$","select",null,{"id":"cf-type","name":"enquiry_type","required":true,"children":[["$","option",null,{"value":"","disabled":true,"selected":true,"children":"Select an option"}],["$","option",null,{"value":"buying","children":"Buying"}],["$","option",null,{"value":"selling","children":"Selling"}],["$","option",null,{"value":"investment","children":"Investment"}],["$","option",null,{"value":"golden-visa","children":"Golden Visa"}],["$","option",null,{"value":"other","children":"Other"}]]}]]}],["$","div",null,{"className":"contact-form__field","children":[["$","label",null,{"htmlFor":"cf-message","children":"Message"}],["$","textarea",null,{"id":"cf-message","name":"message","rows":5,"placeholder":"Tell us about what you're looking for...","required":true}]]}],["$","button",null,{"type":"submit","className":"btn-primary contact-form__submit","children":"Send Enquiry"}]]}]]}]}],["$","style",null,{"children":"$6"}]]}]]}],["$","footer",null,{"className":"footer-section","children":[["$","div",null,{"className":"container","children":[["$","div",null,{"className":"footer-top","children":[["$","div",null,{"className":"footer-brand","children":[["$","span",null,{"className":"footer-wordmark","children":"KYR"}],["$","p",null,{"className":"footer-tagline","children":"Dubai's trusted real estate partner."}]]}],["$","nav",null,{"className":"footer-nav","aria-label":"Footer navigation","children":[["$","a","Properties",{"href":"#properties","className":"footer-nav__link","children":"Properties"}],["$","a","Services",{"href":"#services","className":"footer-nav__link","children":"Services"}],["$","a","About",{"href":"#about","className":"footer-nav__link","children":"About"}],["$","a","Contact",{"href":"#contact","className":"footer-nav__link","children":"Contact"}]]}]]}],["$","div",null,{"className":"footer-bottom","children":[["$","span",null,{"children":"© 2025 KYR Real Estate. All rights reserved."}],["$","span",null,{"className":"footer-bottom__dot","aria-hidden":"true","children":"·"}],["$","span",null,{"children":"RERA Licensed"}]]}]]}],["$","style",null,{"children":"$7"}]]}]],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","h_9Gt_IVgaqgMHoMZnE8iv",{"children":[["$","$Ld",null,{"children":"$Le"}],null]}],["$","$Lf",null,{"children":"$L10"}]]}],false]],"m":"$undefined","G":["$11","$undefined"],"s":false,"S":true}
 12:"$Sreact.suspense"
 13:I[4911,[],"AsyncMetadata"]
-6:{}
-7:{}
 10:["$","div",null,{"hidden":true,"children":["$","$12",null,{"fallback":null,"children":["$","$L13",null,{"promise":"$@14"}]}]}]
 a:null
 e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 9:null
-c:{"metadata":[["$","title","0",{"children":"KYR Real Estate — Unlocking Dubai's Finest Properties"}],["$","meta","1",{"name":"description","content":"KYR Real Estate — Dubai's premier luxury property agency. Redefining real estate through transparency, expertise, and precision."}],["$","meta","2",{"name":"keywords","content":"KYR real estate, Dubai luxury property, off-plan Dubai, Golden Visa UAE, luxury apartments Dubai, Palm Jumeirah villas"}],["$","meta","3",{"property":"og:title","content":"KYR Real Estate — Unlocking Dubai's Finest Properties"}],["$","meta","4",{"property":"og:description","content":"Redefining real estate through transparency, expertise, and precision."}],["$","meta","5",{"property":"og:locale","content":"en_AE"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary"}],["$","meta","8",{"name":"twitter:title","content":"KYR Real Estate — Unlocking Dubai's Finest Properties"}],["$","meta","9",{"name":"twitter:description","content":"Redefining real estate through transparency, expertise, and precision."}]],"error":null,"digest":"$undefined"}
+c:{"metadata":[["$","title","0",{"children":"KYR Real Estate — Dubai Luxury Property"}],["$","meta","1",{"name":"description","content":"KYR Real Estate connects qualified buyers with exceptional properties across Dubai's most prestigious addresses."}],["$","meta","2",{"name":"keywords","content":"KYR real estate, Dubai luxury property, off-plan Dubai, Golden Visa UAE, luxury apartments Dubai"}],["$","meta","3",{"property":"og:title","content":"KYR Real Estate — Dubai Luxury Property"}],["$","meta","4",{"property":"og:description","content":"Dubai's trusted real estate partner — precision, transparency, results."}],["$","meta","5",{"property":"og:locale","content":"en_AE"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary"}],["$","meta","8",{"name":"twitter:title","content":"KYR Real Estate — Dubai Luxury Property"}],["$","meta","9",{"name":"twitter:description","content":"Dubai's trusted real estate partner — precision, transparency, results."}]],"error":null,"digest":"$undefined"}
 14:{"metadata":"$c:metadata","error":null,"digest":"$undefined"}
