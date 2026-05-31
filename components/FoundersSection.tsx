@@ -24,7 +24,11 @@ export function FoundersSection() {
             <figure key={m.name} className="member" data-cursor="true" data-cursor-label="View">
               <div className="member__ph">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={m.img} alt={`${m.name}, ${m.role}`} />
+                <img
+                  src={m.img}
+                  alt={`${m.name}, ${m.role}`}
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).style.opacity = '0'; }}
+                />
               </div>
               <figcaption>
                 <h3>{m.name}</h3>

@@ -33,7 +33,7 @@ export function GallerySection() {
           <div className="gpanel__media">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`${GCS}/luxury%20is%20the%20investment%20that%20never%20fades.jpg`}
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85&fit=crop"
               alt="Luxury is the investment that never fades"
             />
           </div>

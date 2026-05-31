@@ -178,6 +178,56 @@ export default function GSAPAnimations() {
         return el.querySelectorAll('.word-i');
       }
 
+      /* ── Hero logo shatter ── */
+      function shatterLogo() {
+        const logo = document.getElementById('heroLogo') as HTMLImageElement | null;
+        const tag  = logo?.parentElement?.querySelector<HTMLElement>('p');
+        if (!logo) return;
+
+        const rect = logo.getBoundingClientRect();
+        if (rect.width === 0) return;
+
+        const cols = 5, rows = 3;
+        const pW   = rect.width  / cols;
+        const pH   = rect.height / rows;
+
+        const container = document.createElement('div');
+        container.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;pointer-events:none;z-index:210;overflow:visible;`;
+        document.body.appendChild(container);
+
+        logo.style.opacity = '0';
+        if (tag) tag.style.opacity = '0';
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const tile = document.createElement('div');
+            tile.style.cssText = `
+              position:absolute;
+              left:${c * pW}px;top:${r * pH}px;
+              width:${pW}px;height:${pH}px;
+              background:url(${logo.src}) no-repeat;
+              background-size:${rect.width}px ${rect.height}px;
+              background-position:${-(c * pW)}px ${-(r * pH)}px;
+              transform-origin:center center;
+            `;
+            container.appendChild(tile);
+            const angle = Math.random() * Math.PI * 2;
+            const dist  = 120 + Math.random() * 280;
+            gsap.to(tile, {
+              x:        Math.cos(angle) * dist,
+              y:        Math.sin(angle) * dist - 60,
+              rotation: (Math.random() - 0.5) * 480,
+              scale:    0.1 + Math.random() * 0.3,
+              opacity:  0,
+              duration: 0.55 + Math.random() * 0.45,
+              ease:     'power3.in',
+              delay:    Math.random() * 0.18,
+            });
+          }
+        }
+        setTimeout(() => container.remove(), 2000);
+      }
+
       /* ── Loader sequence ── */
       function revealHero() {
         const heroTitle = document.getElementById('heroTitle');
@@ -221,7 +271,7 @@ export default function GSAPAnimations() {
             if (lbar) lbar.style.width = n + '%';
           },
         });
-        tl.to('#loader', { yPercent: -100, duration: 1.15, ease: 'expo.inOut', onComplete: done }, '+=0.15');
+        tl.to('#loader', { yPercent: -100, duration: 1.15, ease: 'expo.inOut', onComplete: () => { done(); setTimeout(shatterLogo, 2000); } }, '+=0.15');
         tl.add(revealHero, '<0.35');
         setTimeout(() => { if (el.style.display !== 'none') { done(); revealHero(); } }, 5500);
       })();

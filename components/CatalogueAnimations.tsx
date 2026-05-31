@@ -66,7 +66,6 @@ export default function CatalogueAnimations() {
           const start = idx * winH * 2;
           const end   = start + winH * 2;
 
-          // Shared layout styles
           s.style.width   = '100%';
           s.style.height  = '100vh';
           s.style.display = 'flex';
@@ -79,43 +78,51 @@ export default function CatalogueAnimations() {
             s.style.position = 'sticky';
             s.style.top      = '0';
             s.style.left     = '0';
-            s.style.zIndex   = String(total - idx + 5);
+            s.style.zIndex   = String(total - idx + 10);
 
             if (prog <= 0.5) {
-              // Opening phase
               const open = Math.min(1, prog * 2);
               ov.style.transform = `translate3d(${trans * open}px,0,0) rotateY(${maxRot * open}deg)`;
               s.style.transform  = 'translate3d(0,0,0)';
-              s.style.opacity    = String(Math.min(1, 0.3 + open));
+              s.style.opacity    = '1';
             } else {
-              // Exit phase — slide up and fade
               const p     = Math.min(1, (prog - 0.5) * 2);
               const eased = ease(p);
               ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot}deg)`;
               s.style.transform  = `translate3d(0,${-eased * winH}px,0)`;
-              s.style.opacity    = String(Math.max(0, 1 - eased * 0.85));
+              s.style.opacity    = String(Math.max(0, 1 - eased));
             }
           } else if (adj < start) {
             /* ── Not yet reached ── */
             ov.style.transform = 'translate3d(0,0,0) rotateY(0deg)';
-            s.style.position = 'absolute';
-            s.style.top      = `${start}px`;
-            s.style.left     = '0';
-            s.style.zIndex   = '1';
-            const dist = start - adj;
-            const push = Math.min(120, (dist / (winH * 2)) * 240);
-            s.style.transform = `translate3d(0,${push}px,0)`;
-            s.style.opacity   = String(Math.max(0, 1 - (dist / (winH * 1.4)) * 1.2));
+
+            // When the previous section enters its exit phase, reveal this section
+            // underneath it (sticky at top:0, lower z-index) so there is no gap.
+            const prevExitThreshold = start - winH; // = (idx-1)*winH*2 + winH
+            if (idx > 0 && adj >= prevExitThreshold) {
+              s.style.position  = 'sticky';
+              s.style.top       = '0';
+              s.style.left      = '0';
+              s.style.zIndex    = String(total - idx + 9); // one below active (total-idx+10)
+              s.style.transform = 'translate3d(0,0,0)';
+              s.style.opacity   = '1';
+            } else {
+              s.style.position  = 'absolute';
+              s.style.top       = `${start}px`;
+              s.style.left      = '0';
+              s.style.zIndex    = '1';
+              s.style.transform = 'translate3d(0,0,0)';
+              s.style.opacity   = '0';
+            }
           } else {
             /* ── Already passed ── */
-            const past = (adj - end) / (winH * 2);
-            ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot * 0.78}deg)`;
+            ov.style.transform = `translate3d(${trans}px,0,0) rotateY(${maxRot}deg)`;
             s.style.position  = 'absolute';
             s.style.top       = `${start}px`;
             s.style.left      = '0';
             s.style.zIndex    = '1';
-            s.style.transform = `translate3d(0,${-winH - past * winH * 0.5}px,0)`;
-            s.style.opacity   = String(Math.max(0, 0.3 - past * 0.5));
+            s.style.transform = `translate3d(0,${-winH * 1.1}px,0)`;
+            s.style.opacity   = '0';
           }
         });
       }
